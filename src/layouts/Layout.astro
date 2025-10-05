@@ -1,0 +1,356 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import '../styles/global.css';
+import AnimatedBackground from '../components/AnimatedBackground.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import LanguagePicker from '../components/LanguagePicker.astro';
+import { translations } from '../i18n/translations';
+import { Image } from 'astro:assets';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+}
+
+const { title, description = 'Web3 enthusiast, blockchain developer & indie hacker', lang = 'en' } = Astro.props;
+const translationsEncoded = encodeURIComponent(JSON.stringify(translations));
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <ViewTransitions />
+
+    <!-- Apply theme immediately to prevent flash -->
+    <script is:inline>
+      // Apply theme before page renders
+      (function() {
+        const theme = (() => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark';
+          }
+          return 'light';
+        })();
+
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/avatar.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      html {
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen" data-translations={translationsEncoded}>
+    <script is:inline>
+      (function () {
+        if (typeof window === 'undefined') return;
+
+        const STORAGE_KEY = 'preferred-language';
+        const MANUAL_SWITCH_KEY = 'manual-language-switch';
+        const SUPPORTED_LANGS = ['en', 'zh'];
+
+        // Skip auto-redirect if user manually switched language
+        const manualSwitch = sessionStorage.getItem(MANUAL_SWITCH_KEY);
+        if (manualSwitch === 'true') {
+          return;
+        }
+
+        const getBrowserLang = () => {
+          const navigatorLangs = Array.isArray(navigator.languages) ? navigator.languages : [navigator.language];
+          const normalized = navigatorLangs
+            .filter(Boolean)
+            .map((lang) => lang.toLowerCase());
+
+          if (normalized.some((lang) => lang.startsWith('zh'))) {
+            return 'zh';
+          }
+
+          return 'en';
+        };
+
+        const currentPath = window.location.pathname;
+        const currentLang = currentPath.startsWith('/zh') ? 'zh' : 'en';
+        const stripLocaleFromPath = (pathname) => pathname.replace(/^\/(zh)(?=\/|$)/, '') || '/';
+
+        const storedLang = (() => {
+          try {
+            const value = window.localStorage.getItem(STORAGE_KEY);
+            return SUPPORTED_LANGS.includes(value ?? '') ? value : null;
+          } catch (error) {
+            return null;
+          }
+        })();
+
+        const targetLang = storedLang ?? getBrowserLang();
+
+        if (targetLang === currentLang) {
+          return;
+        }
+
+        const basePath = stripLocaleFromPath(currentPath);
+        const search = window.location.search ?? '';
+        const hash = window.location.hash ?? '';
+
+        const targetPath = targetLang === 'zh'
+          ? (basePath === '/' ? '/zh' : `/zh${basePath}`)
+          : basePath;
+
+        try {
+          window.localStorage.setItem(STORAGE_KEY, targetLang);
+        } catch (error) {
+          // ignore write errors (e.g. private mode)
+        }
+
+        if (targetPath && targetPath !== currentPath) {
+          window.location.replace(`${targetPath}${search}${hash}`);
+        }
+      })();
+    </script>
+    <AnimatedBackground />
+
+    <!-- SVG Filter Definitions for Liquid Glass Effect -->
+    <svg style="display: none" aria-hidden="true">
+      <defs>
+        <!-- Liquid glass filter for header -->
+        <filter id="liquid-glass-filter" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.006 0.008" numOctaves="3" seed="2" result="noise" />
+          <feGaussianBlur in="noise" stdDeviation="0.5" result="blur" />
+          <feDisplacementMap in="SourceGraphic" in2="blur" scale="12" xChannelSelector="R" yChannelSelector="G" result="displacement" />
+          <feGaussianBlur in="displacement" stdDeviation="0.3" result="finalBlur" />
+        </filter>
+
+        <!-- Shimmer effect filter -->
+        <filter id="shimmer-filter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="turbulence" />
+          <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="3" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- Header with Enhanced Liquid Glass Effect -->
+    <header class="liquid-glass-header">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo/Avatar -->
+          <a href="/" class="flex items-center gap-3 group">
+            <Image
+              src="/avatar.png"
+              alt="Avatar"
+              width={40}
+              height={40}
+              class="w-10 h-10 rounded-full border-2 border-white/30 dark:border-white/20 group-hover:border-blue-400 dark:group-hover:border-blue-400 transition-all duration-300 shadow-lg"
+            />
+            <span class="font-semibold text-lg hidden sm:inline bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">Sleepstars</span>
+          </a>
+
+          <!-- Controls -->
+          <div class="flex items-center gap-2">
+            <LanguagePicker />
+            <ThemeToggle />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content - reduced top padding to allow content to scroll under header -->
+    <main class="relative pt-20 pb-16">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative border-t border-gray-200 dark:border-gray-800 py-8">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+          Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Astro</a> and <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Tailwind CSS</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Client-side language management -->
+    <script is:inline>
+      (function () {
+        const TRANSLATIONS = (() => {
+          try {
+            const encoded = document.body?.dataset?.translations;
+            return encoded ? JSON.parse(decodeURIComponent(encoded)) : {};
+          } catch (error) {
+            return {};
+          }
+        })();
+        const STORAGE_KEY = 'preferred-language';
+        const MANUAL_SWITCH_KEY = 'manual-language-switch';
+        const FALLBACK_LANG = 'en';
+
+        const getLangFromPath = (path) => (path.startsWith('/zh') ? 'zh' : 'en');
+
+        const resolveTranslation = (lang, key) => {
+          const dictionary = TRANSLATIONS[lang] || TRANSLATIONS[FALLBACK_LANG] || {};
+          if (Object.prototype.hasOwnProperty.call(dictionary, key)) {
+            return dictionary[key];
+          }
+          const fallbackDictionary = TRANSLATIONS[FALLBACK_LANG] || {};
+          return fallbackDictionary[key] ?? '';
+        };
+
+        const updateDocumentMeta = (lang) => {
+          const title = resolveTranslation(lang, 'site.title');
+          const description = resolveTranslation(lang, 'site.description');
+
+          if (title) {
+            document.title = title;
+          }
+
+          if (description) {
+            const meta = document.querySelector('meta[name="description"]');
+            if (meta) {
+              meta.setAttribute('content', description);
+            }
+          }
+        };
+
+        const updateDomTexts = (lang) => {
+          const elements = document.querySelectorAll('[data-i18n-key]');
+
+          elements.forEach((element) => {
+            const key = element.getAttribute('data-i18n-key');
+            if (!key) return;
+
+            const mode = element.getAttribute('data-i18n-mode') || 'text';
+            const value = resolveTranslation(lang, key);
+
+            if (mode === 'html') {
+              element.innerHTML = value;
+            } else {
+              element.textContent = value;
+            }
+          });
+        };
+
+        const applyLanguage = (lang, options = {}) => {
+          const targetLang = TRANSLATIONS[lang] ? lang : FALLBACK_LANG;
+
+          document.documentElement.setAttribute('lang', targetLang);
+          updateDomTexts(targetLang);
+          updateDocumentMeta(targetLang);
+
+          if (!options.skipStorage) {
+            try {
+              localStorage.setItem(STORAGE_KEY, targetLang);
+            } catch (error) {
+              // ignore storage errors (e.g. private browsing)
+            }
+          }
+
+          if (!options.skipSession) {
+            try {
+              sessionStorage.setItem(MANUAL_SWITCH_KEY, 'true');
+            } catch (error) {
+              // ignore session storage errors
+            }
+          }
+
+          document.dispatchEvent(
+            new CustomEvent('astro-language-applied', {
+              detail: { lang: targetLang }
+            })
+          );
+
+          return targetLang;
+        };
+
+        const setLanguage = (lang, options = {}) => applyLanguage(lang, options);
+
+        window.__astroLang = {
+          applyLanguage,
+          setLanguage,
+          getLangFromPath: (path) => getLangFromPath(path ?? window.location.pathname),
+          resolveTranslation,
+          translations: TRANSLATIONS
+        };
+
+        window.addEventListener('popstate', () => {
+          const lang = getLangFromPath(window.location.pathname);
+          applyLanguage(lang, { skipStorage: true, skipSession: true });
+        });
+
+        document.addEventListener('astro:page-load', () => {
+          const lang = getLangFromPath(window.location.pathname);
+          applyLanguage(lang, { skipStorage: true, skipSession: true });
+        });
+
+        applyLanguage(getLangFromPath(window.location.pathname), { skipStorage: true, skipSession: true });
+      })();
+    </script>
+
+    <!-- Twemoji - Convert all emoji to Twitter-style SVG -->
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        // Load Twemoji from CDN
+        const twemojiScript = document.createElement('script');
+        twemojiScript.src = 'https://cdn.jsdelivr.net/npm/twemoji@latest/dist/twemoji.min.js';
+        twemojiScript.crossOrigin = 'anonymous';
+        twemojiScript.onload = function() {
+          // Parse the entire document to replace emoji with Twemoji
+          if (typeof twemoji !== 'undefined') {
+            twemoji.parse(document.body, {
+              folder: 'svg',
+              ext: '.svg',
+              base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/'
+            });
+          }
+        };
+
+        // Only append if not already loaded
+        if (!window.twemoji) {
+          document.head.appendChild(twemojiScript);
+        } else {
+          twemoji.parse(document.body, {
+            folder: 'svg',
+            ext: '.svg',
+            base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/'
+          });
+        }
+      });
+    </script>
+
+    <!-- Preserve scroll position for language switching -->
+    <script>
+      let savedScrollPosition = 0;
+
+      document.addEventListener('astro:before-preparation', () => {
+        // Save current scroll position
+        savedScrollPosition = window.scrollY;
+      });
+
+      document.addEventListener('astro:after-swap', () => {
+        // Restore scroll position after page swap
+        window.scrollTo({
+          top: savedScrollPosition,
+          behavior: 'instant'
+        });
+      });
+    </script>
+  </body>
+</html>

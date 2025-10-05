@@ -1,0 +1,161 @@
+---
+import { languages } from '../i18n/translations';
+
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.startsWith('/zh') ? 'zh' : 'en';
+
+// Flag icons mapping (ISO 3166-1-alpha-2 codes)
+const flagClasses = {
+  en: 'fi-us',  // US flag for English
+  zh: 'fi-cn'   // China flag for Chinese
+} as const;
+---
+
+<div class="relative inline-block">
+  <button
+    id="lang-toggle"
+    class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-200 text-sm font-medium"
+  >
+    <span data-role="flag" class={`fi ${flagClasses[currentLang as keyof typeof flagClasses]}`}></span>
+    <span data-role="label">{currentLang === 'en' ? 'EN' : '中文'}</span>
+  </button>
+
+  <div id="lang-menu" class="hidden absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-[100]">
+    {Object.entries(languages).map(([code, name]) => {
+      const href = code === 'en'
+        ? currentPath.replace(/^\/zh/, '') || '/'
+        : `/zh${currentPath.replace(/^\/zh/, '')}`;
+
+      return (
+        <a
+          href={href}
+          data-lang={code}
+          class="flex items-center gap-3 px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+          class:list={{
+            'bg-gray-100 dark:bg-gray-700': code === currentLang
+          }}
+        >
+          <span class={`fi ${flagClasses[code as keyof typeof flagClasses]}`}></span>
+          <span>{name}</span>
+        </a>
+      );
+    })}
+  </div>
+</div>
+
+<script>
+  const FLAG_CLASSES = {
+    en: 'fi-us',
+    zh: 'fi-cn'
+  } as const;
+
+  const MANUAL_SWITCH_KEY = 'manual-language-switch';
+
+  const storeManualSwitch = (lang: string) => {
+    try {
+      sessionStorage.setItem(MANUAL_SWITCH_KEY, 'true');
+    } catch (error) {
+      // ignore storage failures (e.g. Safari private mode)
+    }
+
+    try {
+      localStorage.setItem('preferred-language', lang);
+    } catch (error) {
+      // ignore local storage failures as well
+    }
+  };
+
+  function initLanguagePicker() {
+    const langToggle = document.getElementById('lang-toggle');
+    const langMenu = document.getElementById('lang-menu');
+
+    if (!langToggle || !langMenu) return;
+
+    // Remove existing listeners by cloning and replacing
+    const newLangToggle = langToggle.cloneNode(true) as HTMLElement;
+    langToggle.parentNode?.replaceChild(newLangToggle, langToggle);
+
+    const newLangMenu = langMenu.cloneNode(true) as HTMLElement;
+    langMenu.parentNode?.replaceChild(newLangMenu, langMenu);
+
+    const closeMenu = () => {
+      newLangMenu.classList.add('hidden');
+    };
+
+    const updateToggleUI = (lang: string) => {
+      const label = newLangToggle.querySelector('[data-role="label"]');
+      const flag = newLangToggle.querySelector('[data-role="flag"]');
+      const availableFlagClasses = Object.values(FLAG_CLASSES);
+
+      if (flag) {
+        availableFlagClasses.forEach((cls) => flag.classList.remove(cls));
+        const nextClass = FLAG_CLASSES[lang as keyof typeof FLAG_CLASSES] ?? FLAG_CLASSES.en;
+        if (nextClass) {
+          flag.classList.add(nextClass);
+        }
+      }
+
+      if (label) {
+        label.textContent = lang === 'zh' ? '中文' : 'EN';
+      }
+
+      newLangMenu.querySelectorAll('a[data-lang]').forEach((link) => {
+        const linkLang = link.getAttribute('data-lang');
+        const isActive = linkLang === lang;
+        link.classList.toggle('bg-gray-100', isActive);
+        link.classList.toggle('dark:bg-gray-700', isActive);
+      });
+    };
+
+    const getCurrentLang = () => (window.location.pathname.startsWith('/zh') ? 'zh' : 'en');
+
+    // Toggle menu
+    newLangToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      newLangMenu.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', closeMenu);
+
+    // Handle language selection
+    newLangMenu.addEventListener('click', (event) => {
+      const target = (event.target as HTMLElement | null)?.closest('a[data-lang]');
+      if (!target) return;
+
+      if (event instanceof MouseEvent && (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) {
+        return; // let modified clicks fall back to default behaviour
+      }
+
+      event.preventDefault();
+
+      const lang = target.getAttribute('data-lang');
+      if (!lang) return;
+
+      const url = new URL(target.getAttribute('href') ?? target.href, window.location.origin);
+
+      const performLanguageChange = () => {
+        storeManualSwitch(lang);
+        updateToggleUI(lang);
+        window.location.href = url.toString();
+      };
+
+      if ('startViewTransition' in document) {
+        (document as any).startViewTransition(() => performLanguageChange());
+      } else {
+        performLanguageChange();
+      }
+
+      closeMenu();
+    });
+
+    window.addEventListener('popstate', () => {
+      updateToggleUI(getCurrentLang());
+    });
+
+    updateToggleUI(getCurrentLang());
+  }
+
+  // Initialize on page load
+  document.addEventListener('astro:page-load', initLanguagePicker);
+</script>

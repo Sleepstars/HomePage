@@ -1,0 +1,207 @@
+@import "tailwindcss";
+@import "flag-icons/css/flag-icons.min.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Gray colors */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Blue colors */
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+
+  /* Purple colors */
+  --color-purple-300: #d8b4fe;
+  --color-purple-400: #c084fc;
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+
+  /* Pink colors */
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+
+  /* Cyan colors */
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+
+  /* Indigo colors */
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+
+  /* White & Black */
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+:root {
+  color-scheme: light dark;
+  view-transition-name: root;
+}
+
+/* View Transitions API support for theme toggle animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* Animated background particles */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.particle {
+  animation: float 20s ease-in-out infinite;
+}
+
+.particle-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Twemoji emoji styles */
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 0.05em 0 0.1em;
+  vertical-align: -0.1em;
+  display: inline-block;
+}
+
+/* Enhanced Liquid Glass Header Effect with SVG Filters */
+.liquid-glass-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Glass container - creates the blurred background layer */
+.liquid-glass-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+
+  /* Enhanced glass blur for better scroll-under effect */
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  /* Light mode: subtle gradient with high transparency */
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.4) 100%
+  );
+
+  /* Glossy highlight effect on top edge */
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 12px 2px rgba(255, 255, 255, 0.4),
+    0 8px 32px 0 rgba(31, 38, 135, 0.15);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Liquid distortion layer - applies SVG filter */
+.liquid-glass-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+
+  /* Apply liquid glass SVG filter */
+  filter: url(#liquid-glass-filter);
+  -webkit-filter: url(#liquid-glass-filter);
+
+  /* Subtle backdrop blur fallback */
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+
+  /* Create separation for filter effect */
+  isolation: isolate;
+}
+
+/* Dark mode glass effect */
+.dark .liquid-glass-header::before {
+  background: linear-gradient(
+    135deg,
+    rgba(20, 20, 20, 0.6) 0%,
+    rgba(10, 10, 10, 0.4) 50%,
+    rgba(15, 15, 15, 0.5) 100%
+  );
+
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 0 12px 2px rgba(255, 255, 255, 0.03),
+    0 8px 32px 0 rgba(0, 0, 0, 0.6);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Content layer - ensure content is above glass layers */
+.liquid-glass-header > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional: Add subtle animation to liquid effect */
+@keyframes liquid-shift {
+  0%, 100% {
+    filter: url(#liquid-glass-filter) hue-rotate(0deg);
+  }
+  50% {
+    filter: url(#liquid-glass-filter) hue-rotate(5deg);
+  }
+}
+
+/* Subtle liquid animation enabled */
+.liquid-glass-header::after {
+  animation: liquid-shift 10s ease-in-out infinite;
+}

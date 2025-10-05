@@ -1,0 +1,32 @@
+[
+  {
+    "title": "如何在 CentOS 7/Ubuntu 16 中使用新版本 VSCode Remote Plugin",
+    "link": "https://blog.sleepstars.net/archives/vscode-remote-patchelf-compatibility",
+    "pubDate": "2025-09-24T12:22:42.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E5%A6%82%E4%BD%95%E5%9C%A8%20CentOS%207%2FUbuntu%2016%20%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%96%B0%E7%89%88%E6%9C%AC%20VSCode%2"
+  },
+  {
+    "title": "网络调试工具 Surge 使用 GeoSite/GeoIP 教程",
+    "link": "https://blog.sleepstars.net/archives/geosite-enhance",
+    "pubDate": "2025-09-22T07:13:36.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E7%BD%91%E7%BB%9C%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%20Surge%20%E4%BD%BF%E7%94%A8%20GeoSite%2FGeoIP%20%E6%95%99%E7%A8%8B"
+  },
+  {
+    "title": "Debian 13 DEB822 格式简介（及迁移流程）",
+    "link": "https://blog.sleepstars.net/archives/debian-13-deb822-sources",
+    "pubDate": "2025-09-18T08:07:11.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%2013%20DEB822%20%E6%A0%BC%E5%BC%8F%E7%AE%80%E4%BB%8B%EF%BC%88%E5%8F%8A%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%EF%BC%89"
+  },
+  {
+    "title": "Debian 13 更换 Xanmod 内核（采用新版 Deb822）",
+    "link": "https://blog.sleepstars.net/archives/debian-13-geng-huan-xanmod-nei-he",
+    "pubDate": "2025-09-03T17:52:05.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%2013%20%E6%9B%B4%E6%8D%A2%20Xanmod%20%E5%86%85%E6%A0%B8%EF%BC%88%E9%87%87%E7%94%A8%E6%96%B0%E7%89%88%20Deb822%EF%BC"
+  },
+  {
+    "title": "深圳大学教学区校园网 Windows 自动登录（新手向系列二）（2025 年版）",
+    "link": "https://blog.sleepstars.net/archives/shen-zhen-da-xue-jiao-xue-qu-xiao-yuan-wang-windows-zi-dong-deng-lu-xin-shou-xiang-xi-lie-er",
+    "pubDate": "2024-10-06T19:17:43.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E6%B7%B1%E5%9C%B3%E5%A4%A7%E5%AD%A6%E6%95%99%E5%AD%A6%E5%8C%BA%E6%A0%A1%E5%9B%AD%E7%BD%91%20Windows%20%E8%87%AA%E5%8A%A8%"
+  }
+]

@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SocialLinks from '../../components/SocialLinks.astro';
+import BlogPosts from '../../components/BlogPosts.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import type { SocialLink } from '../../components/SocialLinks.astro';
+import { getCollection } from 'astro:content';
+import blogPostsData from '../../data/blog-posts.json';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const heroEntries = await getCollection('home');
+const heroEntry =
+  heroEntries.find((entry) => entry.data.locale === lang) ??
+  heroEntries.find((entry) => entry.data.locale === 'en');
+
+if (!heroEntry) {
+  console.warn(`No hero content found for locale ${lang}.`);
+}
+
+const hero = heroEntry?.data.hero ?? { greeting: '', paragraphs: [] };
+
+// Social media links - easily customizable
+const socialLinks: SocialLink[] = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/Sleepstars',
+    icon: '&#128187;',
+    enabled: true
+  },
+  {
+    name: 'Telegram',
+    url: 'https://t.me/Sleepstars',
+    icon: '&#9993;&#65039;',
+    enabled: true
+  },
+  {
+    name: 'YouTube',
+    url: 'https://www.youtube.com/@Sleepstars',
+    icon: '&#127909;',
+    enabled: false
+  },
+  {
+    name: 'Mastodon',
+    url: 'https://mastodon.social/@Sleepstars',
+    icon: '&#127758;',
+    enabled: true
+  },
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/pseudo_yu',
+    icon: '&#120143;',
+    enabled: false
+  },
+  {
+    name: 'Instagram',
+    url: 'https://instagram.com/Sleepstars',
+    icon: '&#128247;',
+    enabled: false
+  }
+];
+---
+
+<Layout title={t('site.title')} description={t('site.description')} lang={lang}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section class="mb-16">
+      <h1 data-i18n-key="site.title" class="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+        {t('site.title')}
+      </h1>
+
+      <div class="prose dark:prose-invert max-w-none">
+        <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+          {hero.greeting}
+        </p>
+
+        {hero.paragraphs.map((paragraph, index) => (
+          <p class={`text-base text-gray-700 dark:text-gray-300 ${index === 0 ? 'mt-6' : 'mt-4'}`}>
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <hr class="border-gray-200 dark:border-gray-800 mb-12" />
+
+    <!-- Social Links Section -->
+    <section class="mb-16">
+      <h2 data-i18n-key="social.title" class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
+        {t('social.title')}
+      </h2>
+
+      <SocialLinks links={socialLinks} />
+
+      <div class="mt-6 text-gray-700 dark:text-gray-300">
+        <span data-i18n-key="social.email">{t('social.email')}</span>
+        <a
+          href="mailto:admin@sleepstars.net"
+          class="ml-3 inline-flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+          aria-label="Email admin@sleepstars.net"
+        >
+          <span class="text-lg" aria-hidden="true">&#9993;&#65039;</span>
+          <span class="text-sm font-medium">admin@sleepstars.net</span>
+        </a>
+        <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+          OpenPGP key: <span class="font-mono">8355FCF554DB19D6D9741D84834B70904BD9AB85</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <hr class="border-gray-200 dark:border-gray-800 mb-12" />
+
+    <!-- Blog Posts Section -->
+    <section class="mb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 data-i18n-key="blog.title" class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          {t('blog.title')}
+        </h2>
+        <a
+          href="https://blog.sleepstars.net"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+          data-i18n-key="blog.viewAll"
+        >
+          {t('blog.viewAll')}
+        </a>
+      </div>
+
+      <BlogPosts posts={blogPostsData} lang={lang} />
+    </section>
+
+  </div>
+</Layout>
+
+<style>
+  @reference "../../styles/global.css";
+
+  /* Custom styles for links in prose */
+  .prose a {
+    @apply text-blue-600 dark:text-blue-400 hover:underline;
+  }
+
+  .prose strong {
+    @apply font-semibold;
+  }
+</style>

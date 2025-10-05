@@ -1,0 +1,37 @@
+name: Update RSS Feed
+
+on:
+  schedule:
+    # Run every day
+    - cron: '0 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-rss:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch and update RSS feed
+        run: node scripts/fetch-rss.js
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code src/data/blog-posts.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add src/data/blog-posts.json
+          git commit -m "chore: update RSS feed [skip ci]"
+          git push

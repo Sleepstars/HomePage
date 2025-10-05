@@ -1,0 +1,74 @@
+---
+export interface BlogPost {
+  title: string;
+  link: string;
+  pubDate: string | null;
+  description: string;
+}
+
+interface Props {
+  posts: BlogPost[];
+}
+
+const { posts } = Astro.props;
+
+function formatDate(dateString: string | null, lang: string = 'en'): string {
+  if (!dateString) return '';
+
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  return new Intl.DateTimeFormat(lang === 'zh' ? 'zh-CN' : 'en-US', options).format(date);
+}
+
+// Extract plain text from HTML description
+function stripHTML(html: string): string {
+  // Remove all HTML tags and decode HTML entities
+  const text = html.replace(/<[^>]*>/g, '').trim();
+  // If text is empty or too short, return empty string
+  if (text.length < 10) return '';
+  return text.substring(0, 120);
+}
+
+const lang = Astro.props.lang || 'en';
+---
+
+<div class="space-y-4">
+  {posts.map(post => (
+    <article class="group">
+      <a
+        href={post.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-200 hover:shadow-md"
+      >
+        <div class="flex items-start justify-between gap-4">
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base font-medium text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 line-clamp-1">
+              {post.title}
+            </h3>
+            <time class="block mt-1 text-xs text-gray-500 dark:text-gray-500">
+              {formatDate(post.pubDate, lang)}
+            </time>
+          </div>
+          <div class="flex-shrink-0">
+            <span class="text-lg text-gray-400 dark:text-gray-600">→</span>
+          </div>
+        </div>
+      </a>
+    </article>
+  ))}
+</div>
+
+<style>
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
