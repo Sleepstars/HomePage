@@ -5,6 +5,7 @@ import AnimatedBackground from '../components/AnimatedBackground.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import LanguagePicker from '../components/LanguagePicker.astro';
 import { translations } from '../i18n/translations';
+import { site } from '../data/site';
 import { Image } from 'astro:assets';
 
 interface Props {
@@ -15,6 +16,16 @@ interface Props {
 
 const { title, description = 'Web3 enthusiast, blockchain developer & indie hacker', lang = 'en' } = Astro.props;
 const translationsEncoded = encodeURIComponent(JSON.stringify(translations));
+const nowYear = new Date().getFullYear();
+const startYear = site.startYear ?? nowYear;
+const yearText = startYear === nowYear ? `${nowYear}` : `${startYear}\u2013${nowYear}`;
+
+// 公安备案：仅使用省份简称 + 数字编号
+const psbNumber = site.psbNumber ?? '';
+const psbProvince = site.psbProvince ?? '';
+const psbHasInfo = Boolean(psbNumber);
+const psbLink = psbHasInfo ? `https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=${psbNumber}` : '';
+const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
 ---
 
 <!DOCTYPE html>
@@ -182,9 +193,25 @@ const translationsEncoded = encodeURIComponent(JSON.stringify(translations));
     <!-- Footer -->
     <footer class="relative border-t border-gray-200 dark:border-gray-800 py-8">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="text-center text-sm text-gray-600 dark:text-gray-400">
-          Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Astro</a> and <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Tailwind CSS</a>
-        </p>
+        <div class="text-center space-y-2">
+          <p class="text-sm text-gray-600 dark:text-gray-400 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+            <span>© {yearText} {site.name}</span>
+            {site.icp && (
+              <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:underline">
+                {site.icp}
+              </a>
+            )}
+            {psbHasInfo && (
+              <a href={psbLink} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-gray-600 dark:text-gray-400 hover:underline">
+                <img src="https://www.beian.gov.cn/img/ghs.png" alt="公安备案" class="w-4 h-4 inline-block" />
+                <span>{psbText}</span>
+              </a>
+            )}
+          </p>
+          <p class="text-center text-xs text-gray-500 dark:text-gray-500">
+            Built with <a href="https://astro.build" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Astro</a> and <a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">Tailwind CSS</a>
+          </p>
+        </div>
       </div>
     </footer>
 
