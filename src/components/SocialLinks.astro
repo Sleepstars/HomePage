@@ -2,6 +2,7 @@
 export interface SocialLink {
   name: string;
   url: string;
+  // Simple Icons slug, e.g. "github", "telegram", "x"
   icon: string;
   enabled?: boolean;
 }
@@ -20,10 +21,20 @@ const enabledLinks = links.filter(link => link.enabled !== false);
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      class="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+      class="group flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
       aria-label={link.name}
     >
-      <span class="text-lg" set:html={link.icon}></span>
+      <img
+        src={`https://cdn.simpleicons.org/${link.icon}`}
+        alt=""
+        width="20"
+        height="20"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
+        class="w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity duration-200"
+        aria-hidden="true"
+      />
       <span class="text-sm">{link.name}</span>
     </a>
   ))}

@@ -25,37 +25,37 @@ const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
     url: 'https://github.com/Sleepstars',
-    icon: '&#128187;',
+    icon: 'github',
     enabled: true
   },
   {
     name: 'Telegram',
     url: 'https://t.me/Sleepstars',
-    icon: '&#9993;&#65039;',
+    icon: 'telegram',
     enabled: true
   },
   {
     name: 'YouTube',
     url: 'https://www.youtube.com/@Sleepstars',
-    icon: '&#127909;',
-    enabled: true
+    icon: 'youtube',
+    enabled: false
   },
   {
     name: 'Mastodon',
     url: 'https://mastodon.social/@Sleepstars',
-    icon: '&#127758;',
+    icon: 'mastodon',
     enabled: true
   },
   {
     name: 'Twitter',
     url: 'https://x.com/Sleep_stars_',
-    icon: '&#120143;',
+    icon: 'x',
     enabled: true
   },
   {
     name: 'Instagram',
     url: 'https://instagram.com/Sleepstars',
-    icon: '&#128247;',
+    icon: 'instagram',
     enabled: false
   }
 ];
@@ -100,7 +100,17 @@ const socialLinks: SocialLink[] = [
           class="ml-3 inline-flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
           aria-label="Email admin@sleepstars.net"
         >
-          <span class="text-lg" aria-hidden="true">&#9993;&#65039;</span>
+          <img
+            src="https://cdn.simpleicons.org/gmail"
+            alt=""
+            width="20"
+            height="20"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="low"
+            class="w-5 h-5 opacity-90 hover:opacity-100 transition-opacity duration-200"
+            aria-hidden="true"
+          />
           <span class="text-sm font-medium">admin@sleepstars.net</span>
         </a>
         <p class="mt-4 text-sm text-gray-600 dark:text-gray-400">
