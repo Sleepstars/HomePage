@@ -24,15 +24,9 @@ const enabledLinks = links.filter(link => link.enabled !== false);
       class="group flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
       aria-label={link.name}
     >
-      <img
-        src={`https://cdn.simpleicons.org/${link.icon}`}
-        alt=""
-        width="20"
-        height="20"
-        loading="lazy"
-        decoding="async"
-        fetchpriority="low"
-        class="w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity duration-200"
+      <span
+        class="si w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity duration-200"
+        style={`--si: url('/icons/${link.icon}.svg')`}
         aria-hidden="true"
       />
       <span class="text-sm">{link.name}</span>

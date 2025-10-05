@@ -108,6 +108,16 @@ img.emoji {
   display: inline-block;
 }
 
+/* Simple Icons as CSS mask (monochrome, currentColor) */
+.si {
+  display: inline-block;
+  width: 1.25rem; /* 20px */
+  height: 1.25rem; /* 20px */
+  background-color: currentColor;
+  mask: var(--si) center/contain no-repeat;
+  -webkit-mask: var(--si) center/contain no-repeat;
+}
+
 /* Enhanced Liquid Glass Header Effect with SVG Filters */
 .liquid-glass-header {
   position: fixed;

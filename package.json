@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "predev": "node scripts/copy-icons.cjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/copy-icons.cjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -16,5 +18,8 @@
     "flag-icons": "^7.5.0",
     "tailwindcss": "^4.1.14",
     "twemoji": "^14.0.2"
+  },
+  "devDependencies": {
+    "simple-icons": "^15.16.1"
   }
 }
