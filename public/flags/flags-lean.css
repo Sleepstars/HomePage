@@ -1,0 +1,12 @@
+/* Minimal flag-icons subset: base + US/CN + fallback XX */
+.fib, .fi { background-size: contain; background-position: 50%; background-repeat: no-repeat; }
+.fi { position: relative; display: inline-block; width: 1.333333em; line-height: 1em; }
+.fi:before { content: "\00a0"; }
+.fi.fis { width: 1em; }
+.fi-xx { background-image: url('/flags/4x3/xx.svg'); }
+.fi-xx.fis { background-image: url('/flags/1x1/xx.svg'); }
+.fi-us { background-image: url('/flags/4x3/us.svg'); }
+.fi-us.fis { background-image: url('/flags/1x1/us.svg'); }
+.fi-cn { background-image: url('/flags/4x3/cn.svg'); }
+.fi-cn.fis { background-image: url('/flags/1x1/cn.svg'); }
+

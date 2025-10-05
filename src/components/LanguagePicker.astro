@@ -4,10 +4,10 @@ import { languages } from '../i18n/translations';
 const currentPath = Astro.url.pathname;
 const currentLang = currentPath.startsWith('/zh') ? 'zh' : 'en';
 
-// Flag icons mapping (ISO 3166-1-alpha-2 codes)
+// Flag icons classes (lean subset)
 const flagClasses = {
-  en: 'fi-us',  // US flag for English
-  zh: 'fi-cn'   // China flag for Chinese
+  en: 'fi-us',
+  zh: 'fi-cn'
 } as const;
 ---
 
@@ -15,6 +15,7 @@ const flagClasses = {
   <button
     id="lang-toggle"
     class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors duration-200 text-sm font-medium"
+    aria-label="Language toggle"
   >
     <span data-role="flag" class={`fi ${flagClasses[currentLang as keyof typeof flagClasses]}`}></span>
     <span data-role="label">{currentLang === 'en' ? 'EN' : '中文'}</span>
@@ -35,7 +36,7 @@ const flagClasses = {
             'bg-gray-100 dark:bg-gray-700': code === currentLang
           }}
         >
-          <span class={`fi ${flagClasses[code as keyof typeof flagClasses]}`}></span>
+          <span class={`fi ${flagClasses[code as keyof typeof flagClasses]}`} aria-hidden="true"></span>
           <span>{name}</span>
         </a>
       );
@@ -85,14 +86,9 @@ const flagClasses = {
     const updateToggleUI = (lang: string) => {
       const label = newLangToggle.querySelector('[data-role="label"]');
       const flag = newLangToggle.querySelector('[data-role="flag"]');
-      const availableFlagClasses = Object.values(FLAG_CLASSES);
-
       if (flag) {
-        availableFlagClasses.forEach((cls) => flag.classList.remove(cls));
-        const nextClass = FLAG_CLASSES[lang as keyof typeof FLAG_CLASSES] ?? FLAG_CLASSES.en;
-        if (nextClass) {
-          flag.classList.add(nextClass);
-        }
+        const cls = FLAG_CLASSES[lang as keyof typeof FLAG_CLASSES] ?? FLAG_CLASSES.en;
+        (flag as HTMLElement).className = `fi ${cls}`;
       }
 
       if (label) {
