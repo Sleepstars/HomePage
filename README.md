@@ -43,8 +43,8 @@ npm run preview
 替换头像图片：
 
 ```bash
-# 用你的头像替换 public/avatar.png
-cp your-avatar.png public/avatar.png
+# 用你的头像替换 public/avatar.webp
+cp your-avatar.webp public/avatar.webp
 ```
 
 ### 2. 配置社交媒体链接
@@ -158,7 +158,7 @@ export const translations = {
 ```
 /
 ├── public/
-│   └── avatar.png          # 你的头像图片
+│   └── avatar.webp         # 你的头像图片
 ├── src/
 │   ├── components/
 │   │   ├── AnimatedBackground.astro
