@@ -186,27 +186,10 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
     </script>
     <AnimatedBackground />
 
-    <!-- SVG Filter Definitions for Liquid Glass Effect -->
-    <svg style="display: none" aria-hidden="true">
-      <defs>
-        <!-- Liquid glass filter for header -->
-        <filter id="liquid-glass-filter" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.006 0.008" numOctaves="3" seed="2" result="noise" />
-          <feGaussianBlur in="noise" stdDeviation="0.5" result="blur" />
-          <feDisplacementMap in="SourceGraphic" in2="blur" scale="12" xChannelSelector="R" yChannelSelector="G" result="displacement" />
-          <feGaussianBlur in="displacement" stdDeviation="0.3" result="finalBlur" />
-        </filter>
-
-        <!-- Shimmer effect filter -->
-        <filter id="shimmer-filter">
-          <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" result="turbulence" />
-          <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="3" xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </defs>
-    </svg>
-
-    <!-- Header with Enhanced Liquid Glass Effect -->
-    <header class="liquid-glass-header">
+    <!-- Header with frosted glass effect -->
+    <header
+      class="fixed inset-x-0 top-0 z-50 border-b border-white/40 dark:border-white/10 bg-white/80 dark:bg-zinc-900/70 backdrop-blur-xl shadow-[0_10px_40px_rgba(15,23,42,0.08)] transition-colors"
+    >
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
           <!-- Logo/Avatar -->
