@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { projects } from '../../data/projects';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const featuredProjects = projects.filter((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
+---
+
+<Layout 
+  title={t('nav.projects') + ' - ' + t('site.title')} 
+  description={lang === 'zh' ? '我的开源项目和作品集' : 'My open source projects and portfolio'}
+  lang={lang}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="mb-16">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+        {t('nav.projects')}
+      </h1>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        {lang === 'zh' 
+          ? '这里展示我参与的开源项目和个人作品。' 
+          : 'Here are the open source projects and personal works I\'ve been involved in.'}
+      </p>
+    </section>
+
+    {featuredProjects.length > 0 && (
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
+          {lang === 'zh' ? '精选项目' : 'Featured Projects'}
+        </h2>
+        <div class="space-y-6">
+          {featuredProjects.map((project) => (
+            <ProjectCard project={project} lang={lang} />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {otherProjects.length > 0 && (
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
+          {lang === 'zh' ? '其他项目' : 'Other Projects'}
+        </h2>
+        <div class="space-y-6">
+          {otherProjects.map((project) => (
+            <ProjectCard project={project} lang={lang} />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {projects.length === 0 && (
+      <div class="text-center py-12 text-gray-600 dark:text-gray-400">
+        <p>{lang === 'zh' ? '暂无项目' : 'No projects yet'}</p>
+      </div>
+    )}
+  </div>
+</Layout>
