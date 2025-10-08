@@ -1,5 +1,11 @@
 [
   {
+    "title": "#周报 1 记录首个个人页面上线",
+    "link": "https://blog.sleepstars.net/archives/zhou-bao-1-ji-lu-shou-ge-ge-ren-ye-mian-shang-xian",
+    "pubDate": "2025-10-08T17:42:08.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%23%E5%91%A8%E6%8A%A5%201%20%E8%AE%B0%E5%BD%95%E9%A6%96%E4%B8%AA%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2%E4%B8%8A%E7%BA%BF&amp"
+  },
+  {
     "title": "如何在 CentOS 7/Ubuntu 16 中使用新版本 VSCode Remote Plugin",
     "link": "https://blog.sleepstars.net/archives/vscode-remote-patchelf-compatibility",
     "pubDate": "2025-09-24T12:22:42.000Z",
@@ -22,11 +28,5 @@
     "link": "https://blog.sleepstars.net/archives/debian-13-geng-huan-xanmod-nei-he",
     "pubDate": "2025-09-03T17:52:05.000Z",
     "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%2013%20%E6%9B%B4%E6%8D%A2%20Xanmod%20%E5%86%85%E6%A0%B8%EF%BC%88%E9%87%87%E7%94%A8%E6%96%B0%E7%89%88%20Deb822%EF%BC"
-  },
-  {
-    "title": "深圳大学教学区校园网 Windows 自动登录（新手向系列二）（2025 年版）",
-    "link": "https://blog.sleepstars.net/archives/shen-zhen-da-xue-jiao-xue-qu-xiao-yuan-wang-windows-zi-dong-deng-lu-xin-shou-xiang-xi-lie-er",
-    "pubDate": "2024-10-06T19:17:43.000Z",
-    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E6%B7%B1%E5%9C%B3%E5%A4%A7%E5%AD%A6%E6%95%99%E5%AD%A6%E5%8C%BA%E6%A0%A1%E5%9B%AD%E7%BD%91%20Windows%20%E8%87%AA%E5%8A%A8%"
   }
 ]

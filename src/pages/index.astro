@@ -122,15 +122,29 @@ const socialLinks: SocialLink[] = [
         <h2 data-i18n-key="blog.title" class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
           {t('blog.title')}
         </h2>
-        <a
-          href="https://blog.sleepstars.net"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-          data-i18n-key="blog.viewAll"
-        >
-          {t('blog.viewAll')}
-        </a>
+        <div class="flex items-center gap-4">
+          <a
+            href="https://blog.sleepstars.net/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-sm text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 transition-colors"
+            aria-label={t('blog.rss')}
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M3.429 2.571c8.571 0 15.429 6.857 15.429 15.429h-3.429c0-6.857-5.714-12.571-12.571-12.571v-2.857zM3.429 8c4.571 0 8.571 4 8.571 8.571h-2.857c0-3.429-2.286-5.714-5.714-5.714v-2.857zM6.857 15.429c0 1.143-.857 2.286-2 2.286s-2-1.143-2-2.286.857-2.286 2-2.286 2 1.143 2 2.286z"/>
+            </svg>
+            <span>{t('blog.rss')}</span>
+          </a>
+          <a
+            href="https://blog.sleepstars.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            data-i18n-key="blog.viewAll"
+          >
+            {t('blog.viewAll')}
+          </a>
+        </div>
       </div>
 
       <BlogPosts posts={blogPostsData} lang={lang} />

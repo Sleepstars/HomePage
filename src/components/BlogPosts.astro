@@ -8,9 +8,10 @@ export interface BlogPost {
 
 interface Props {
   posts: BlogPost[];
+  showRSSLink?: boolean;
 }
 
-const { posts } = Astro.props;
+const { posts, showRSSLink = false } = Astro.props;
 
 function formatDate(dateString: string | null, lang: string = 'en'): string {
   if (!dateString) return '';
@@ -35,6 +36,15 @@ function stripHTML(html: string): string {
 }
 
 const lang = Astro.props.lang || 'en';
+
+// Get translation function
+const t = (key: string) => {
+  const translations = {
+    en: { 'blog.rss': 'RSS Feed' },
+    zh: { 'blog.rss': 'RSS 订阅' }
+  };
+  return translations[lang as keyof typeof translations]?.[key] || key;
+};
 ---
 
 <div class="space-y-4">
