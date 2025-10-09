@@ -237,10 +237,45 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
           <div class="flex items-center gap-2">
             <LanguagePicker />
             <ThemeToggle />
+            <!-- Mobile menu button -->
+            <button 
+              id="mobile-menu-button" 
+              class="md:hidden p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors relative z-50"
+              aria-label="Toggle navigation menu"
+              type="button"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
     </header>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-x-0 top-16 z-40 md:hidden">
+      <div class="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl border-b border-white/40 dark:border-white/10 shadow-lg">
+        <nav class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div class="flex flex-col space-y-3">
+            <a 
+              href={lang === 'zh' ? '/zh' : '/'}
+              class="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              data-i18n-key="nav.home"
+            >
+              {translations[lang]['nav.home']}
+            </a>
+            <a 
+              href={lang === 'zh' ? '/zh/projects' : '/projects'}
+              class="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              data-i18n-key="nav.projects"
+            >
+              {translations[lang]['nav.projects']}
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
 
     <!-- Main content - reduced top padding to allow content to scroll under header -->
     <main class="relative pt-20 pb-16">
@@ -449,6 +484,121 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
           behavior: 'instant'
         });
       });
+    </script>
+
+    <!-- Mobile menu toggle functionality -->
+    <script is:inline>
+      (function() {
+        let isMenuOpen = false;
+        let clickOutsideHandler = null;
+        let keydownHandler = null;
+        let resizeHandler = null;
+
+        function toggleMenu() {
+          const mobileMenu = document.getElementById('mobile-menu');
+          const menuButton = document.getElementById('mobile-menu-button');
+          
+          if (!mobileMenu || !menuButton) return;
+          
+          isMenuOpen = !isMenuOpen;
+          
+          if (isMenuOpen) {
+            mobileMenu.classList.remove('hidden');
+            menuButton.innerHTML = `
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            `;
+          } else {
+            mobileMenu.classList.add('hidden');
+            menuButton.innerHTML = `
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            `;
+          }
+        }
+
+        function closeMenu() {
+          const mobileMenu = document.getElementById('mobile-menu');
+          const menuButton = document.getElementById('mobile-menu-button');
+          
+          if (mobileMenu && menuButton && isMenuOpen) {
+            isMenuOpen = false;
+            mobileMenu.classList.add('hidden');
+            menuButton.innerHTML = `
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            `;
+          }
+        }
+
+        function initMobileMenu() {
+          const menuButton = document.getElementById('mobile-menu-button');
+          if (!menuButton) return;
+
+          // Remove existing listeners by cloning and replacing the button
+          const newMenuButton = menuButton.cloneNode(true);
+          menuButton.parentNode?.replaceChild(newMenuButton, menuButton);
+
+          // Add click listener to the new button
+          newMenuButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            toggleMenu();
+          });
+
+          // Remove old document-level listeners
+          if (clickOutsideHandler) {
+            document.removeEventListener('click', clickOutsideHandler);
+          }
+          if (keydownHandler) {
+            document.removeEventListener('keydown', keydownHandler);
+          }
+          if (resizeHandler) {
+            window.removeEventListener('resize', resizeHandler);
+          }
+
+          // Close menu when clicking outside
+          clickOutsideHandler = (event) => {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const currentButton = document.getElementById('mobile-menu-button');
+            
+            if (currentButton && mobileMenu && 
+                !currentButton.contains(event.target) && 
+                !mobileMenu.contains(event.target)) {
+              closeMenu();
+            }
+          };
+          document.addEventListener('click', clickOutsideHandler);
+
+          // Close menu on Escape key
+          keydownHandler = (event) => {
+            if (event.key === 'Escape') {
+              closeMenu();
+            }
+          };
+          document.addEventListener('keydown', keydownHandler);
+
+          // Close menu on window resize to desktop
+          resizeHandler = () => {
+            if (window.innerWidth >= 768) {
+              closeMenu();
+            }
+          };
+          window.addEventListener('resize', resizeHandler);
+        }
+
+        // Initialize on page load
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initMobileMenu);
+        } else {
+          initMobileMenu();
+        }
+
+        // Reinitialize after Astro page navigation
+        document.addEventListener('astro:page-load', initMobileMenu);
+      })();
     </script>
   </body>
 </html>
