@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import ProjectCard from '../../../components/ProjectCard.astro';
+import GitHubActivity from '../../../components/GitHubActivity.astro';
 import { projects } from '../../../data/projects';
 import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
 
@@ -27,6 +28,8 @@ const otherProjects = projects.filter((p) => !p.featured);
           : 'Here are the open source projects and personal works I\'ve been involved in.'}
       </p>
     </section>
+
+    <GitHubActivity username="Sleepstars" lang="zh" />
 
     {featuredProjects.length > 0 && (
       <section class="mb-12">
