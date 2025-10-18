@@ -41,8 +41,16 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={lang === 'zh' ? 'AI, 人工智能, 开发者, 开源, 个人网站, 区块链, Web3, 独立开发者' : 'AI, artificial intelligence, developer, open source, personal website, blockchain, Web3, indie developer'} />
+    <meta name="author" content="Sleepstars" />
+    <meta name="robots" content="index, follow" />
     <title>{title}</title>
     {canonical && <link rel="canonical" href={canonical} />}
+    
+    <!-- hreflang tags for multilingual SEO -->
+    <link rel="alternate" hreflang="en" href="https://sleepstars.net" />
+    <link rel="alternate" hreflang="zh" href="https://sleepstars.net/zh" />
+    <link rel="alternate" hreflang="x-default" href="https://sleepstars.net" />
 
     <!-- OpenGraph -->
     <meta property="og:title" content={title} />
@@ -52,7 +60,15 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
     <meta property="og:site_name" content={siteName} />
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:alt" content={title + ' - ' + description} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Additional SEO tags -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -95,6 +111,13 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
 
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="/favicon.webp" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#3b82f6" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/favicon.webp" />
 
     <!-- Fonts (async to avoid render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -127,6 +150,54 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
     <noscript>
       <link rel="stylesheet" href="/flags/flags-lean.css" />
     </noscript>
+  <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+      {{
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sleepstars",
+        "url": "https://sleepstars.net",
+        "sameAs": [
+          "https://github.com/Sleepstars",
+          "https://twitter.com/Sleep_stars_",
+          "https://mastodon.social/@Sleepstars",
+          "https://t.me/Sleepstars"
+        ],
+        "jobTitle": lang === 'zh' ? "AI 爱好者，学生 & 独立开发者" : "AI enthusiast, student & indie developer",
+        "description": description,
+        "image": "https://sleepstars.net/avatar.webp",
+        "email": "admin@sleepstars.net",
+        "knowsAbout": [
+          "Artificial Intelligence",
+          "Web Development",
+          "Blockchain",
+          "Open Source"
+        ],
+        "nationality": {
+          "@type": "Country",
+          "name": "China"
+        },
+        "knowsLanguage": ["English", "Chinese"]
+      }}
+    </script>
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+      {{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": siteName,
+        "url": "https://sleepstars.net",
+        "description": description,
+        "inLanguage": lang === 'zh' ? "zh-CN" : "en-US",
+        "isAccessibleForFree": true,
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": siteName,
+          "url": "https://sleepstars.net"
+        }
+      }}
+    </script>
   </head>
   <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen" data-translations={translationsEncoded}>
     <script is:inline>
@@ -206,7 +277,7 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
           <a href={lang === 'zh' ? '/zh' : '/'} class="flex items-center gap-3 group">
             <Image
               src="/avatar.webp"
-              alt="Avatar"
+              alt="Sleepstars - AI enthusiast and indie developer"
               width={40}
               height={40}
               loading="eager"

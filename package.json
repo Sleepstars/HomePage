@@ -3,13 +3,14 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "predev": "node scripts/copy-icons.cjs",
+    "predev": "node scripts/copy-icons.cjs && node scripts/update-sitemap.js",
     "dev": "astro dev",
-    "prebuild": "node scripts/copy-icons.cjs",
+    "prebuild": "node scripts/copy-icons.cjs && node scripts/update-sitemap.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "update-rss": "node scripts/fetch-rss.js"
+    "update-rss": "node scripts/fetch-rss.js",
+    "update-sitemap": "node scripts/update-sitemap.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.6",

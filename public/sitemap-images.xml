@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <url>
+    <loc>https://sleepstars.net/</loc>
+    <image:image>
+      <image:loc>https://sleepstars.net/avatar.webp</image:loc>
+      <image:title>Sleepstars - AI enthusiast and indie developer</image:title>
+      <image:caption>Professional avatar photo of Sleepstars, AI enthusiast and indie developer</image:caption>
+      <image:license>https://sleepstars.net</image:license>
+    </image:image>
+    <image:image>
+      <image:loc>https://sleepstars.net/favicon.webp</image:loc>
+      <image:title>Sleepstars Website Favicon</image:title>
+      <image:caption>Favicon for Sleepstars personal website</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /flags/
+Disallow: /icons/
+
+# Sitemap location
+Sitemap: https://sleepstars.net/sitemap.xml
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandexbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Crawl-delay for respectul crawling
+Crawl-delay: 1

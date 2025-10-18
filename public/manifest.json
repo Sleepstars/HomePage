@@ -1,0 +1,54 @@
+{
+  "name": "Sleepstars - AI Enthusiast & Indie Developer",
+  "short_name": "Sleepstars",
+  "description": "Personal website of Sleepstars - AI enthusiast, student & indie developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["personal", "portfolio", "technology", "ai"],
+  "shortcuts": [
+    {
+      "name": "About",
+      "short_name": "About",
+      "description": "Learn about Sleepstars",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/favicon.webp",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "short_name": "Projects",
+      "description": "View my projects",
+      "url": "/projects",
+      "icons": [
+        {
+          "src": "/favicon.webp",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}
