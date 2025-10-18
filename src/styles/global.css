@@ -51,6 +51,7 @@
 :root {
   color-scheme: light dark;
   view-transition-name: root;
+  text-autospace: normal;
 }
 
 /* View Transitions API support for theme toggle animation */
