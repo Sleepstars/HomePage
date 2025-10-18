@@ -17,7 +17,6 @@
     "@tailwindcss/vite": "^4.1.14",
     "astro": "^5.14.4",
     "flag-icons": "^7.5.0",
-    "github-calendar": "^2.3.4",
     "tailwindcss": "^4.1.14",
     "twemoji": "^14.0.2"
   },
