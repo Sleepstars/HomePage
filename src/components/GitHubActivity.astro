@@ -1,184 +1,91 @@
 ---
-interface ActivityData {
-  username: string;
-  totalContributions: number;
-  weeks: Array<{
-    firstDay: string;
-    days: Array<{
-      date: string;
-      count: number;
-      level: number;
-    }>;
-  }>;
-  lastUpdated: string;
-}
-
 interface Props {
   username?: string;
   lang: 'en' | 'zh';
 }
 
 const { username = 'Sleepstars', lang } = Astro.props;
-
-// 读取活动数据
-let activityData: ActivityData | null = null;
-try {
-  const dataFile = await import('../data/github-activity.json', { with: { type: 'json' } });
-  activityData = dataFile.default;
-} catch (error) {
-  console.error('Failed to load GitHub activity data:', error);
-}
-
-// 月份标签
-const monthLabels = lang === 'zh' 
-  ? ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-  : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-// 星期标签
-const weekdayLabels = lang === 'zh'
-  ? ['', '一', '', '三', '', '五', '']
-  : ['', 'Mon', '', 'Wed', '', 'Fri', ''];
-
-// 获取月份名称
-function getMonthName(dateStr: string) {
-  const date = new Date(dateStr);
-  return monthLabels[date.getMonth()];
-}
-
-// 获取星期几（0-6，0是周日）
-function getWeekday(dateStr: string) {
-  const date = new Date(dateStr);
-  return date.getDay();
-}
-
-// 格式化日期
-function formatDate(dateStr: string, count: number) {
-  const date = new Date(dateStr);
-  const options: Intl.DateTimeFormatOptions = { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  };
-  const formattedDate = date.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US', options);
-  return `${formattedDate}${count > 0 ? `: ${count} ${lang === 'zh' ? '次贡献' : 'contributions'}` : ''}`;
-}
-
-// 获取颜色类
-function getColorClass(level: number) {
-  switch (level) {
-    case 0: return 'bg-gray-100 dark:bg-gray-800';
-    case 1: return 'bg-green-200 dark:bg-green-900';
-    case 2: return 'bg-green-300 dark:bg-green-700';
-    case 3: return 'bg-green-400 dark:bg-green-600';
-    case 4: return 'bg-green-500 dark:bg-green-500';
-    default: return 'bg-gray-100 dark:bg-gray-800';
-  }
-}
 ---
 
-{activityData && (
-  <section class="mb-12">
-    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-          {lang === 'zh' ? 'GitHub 活动概览' : 'GitHub Activity Overview'}
-        </h2>
-        <a 
-          href={`https://github.com/${activityData.username}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
-        >
-          @{activityData.username}
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-          </svg>
-        </a>
-      </div>
-      
-      <div class="mb-4">
-        <span class="text-3xl font-bold text-gray-900 dark:text-gray-100">
-          {activityData.totalContributions.toLocaleString()}
-        </span>
-        <span class="text-gray-600 dark:text-gray-400 ml-2">
-          {lang === 'zh' ? '次贡献，过去一年' : 'contributions in the last year'}
-        </span>
-      </div>
-
-      <div class="overflow-x-auto">
-        <div class="inline-block min-w-full">
-          <!-- 月份标签 -->
-          <div class="flex text-xs text-gray-500 dark:text-gray-400 mb-2">
-            <div class="w-3"></div>
-            <div class="flex-1 flex justify-between">
-              {activityData.weeks.filter((_, i) => i % 4 === 0).map((week) => (
-                <span key={week.firstDay}>
-                  {getMonthName(week.firstDay)}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <!-- 贡献网格 -->
-          <div class="flex gap-1">
-            <!-- 星期标签 -->
-            <div class="flex flex-col justify-between text-xs text-gray-500 dark:text-gray-400 mr-2">
-              {weekdayLabels.map((label, i) => (
-                <div key={i} class="h-3 flex items-center">
-                  {label}
-                </div>
-              ))}
-            </div>
-
-            <!-- 周网格 -->
-            <div class="flex gap-1">
-              {activityData.weeks.map((week, weekIndex) => (
-                <div key={weekIndex} class="flex flex-col gap-1">
-                  {week.days.map((day, dayIndex) => (
-                    <div
-                      key={`${weekIndex}-${dayIndex}`}
-                      class={`w-3 h-3 rounded-sm ${getColorClass(day.level)} hover:ring-2 hover:ring-blue-400 transition-all cursor-pointer`}
-                      title={formatDate(day.date, day.count)}
-                    ></div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <!-- 图例 -->
-          <div class="flex items-center gap-2 mt-4 text-xs text-gray-600 dark:text-gray-400">
-            <span>{lang === 'zh' ? '少' : 'Less'}</span>
-            <div class="flex gap-1">
-              {[0, 1, 2, 3, 4].map((level) => (
-                <div
-                  key={level}
-                  class={`w-3 h-3 rounded-sm ${getColorClass(level)}`}
-                ></div>
-              ))}
-            </div>
-            <span>{lang === 'zh' ? '多' : 'More'}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="mt-4 text-xs text-gray-500 dark:text-gray-400">
-        {lang === 'zh' ? '数据更新时间：' : 'Last updated: '}
-        {new Date(activityData.lastUpdated).toLocaleString(lang === 'zh' ? 'zh-CN' : 'en-US')}
-      </div>
-    </div>
-  </section>
-)}
-
-{!activityData && (
-  <section class="mb-12">
-    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+<section class="mb-12">
+  <div class="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
         {lang === 'zh' ? 'GitHub 活动概览' : 'GitHub Activity Overview'}
       </h2>
-      <p class="text-gray-600 dark:text-gray-400">
-        {lang === 'zh' ? '活动数据加载中...' : 'Loading activity data...'}
-      </p>
+      <a 
+        href={`https://github.com/${username}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+      >
+        @{username}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      </a>
     </div>
-  </section>
-)}
+    
+    <!-- GitHub Calendar will be rendered here -->
+    <div id="github-calendar" class="github-calendar w-full overflow-x-auto"></div>
+  </div>
+</section>
+
+<script>
+  import GitHubCalendar from 'github-calendar';
+  
+  // Initialize GitHub Calendar when component loads
+  document.addEventListener('astro:page-load', () => {
+    const calendarElement = document.getElementById('github-calendar');
+    if (calendarElement && !calendarElement.hasChildNodes()) {
+      GitHubCalendar('.github-calendar', 'Sleepstars', {
+        responsive: true,
+        tooltips: true,
+        global_stats: false,
+        cache: true,
+        proxy: 'https://cors-anywhere.herokuapp.com/https://github.com/users/Sleepstars/contributions'
+      });
+    }
+  });
+
+  // Also initialize on initial page load
+  document.addEventListener('DOMContentLoaded', () => {
+    const calendarElement = document.getElementById('github-calendar');
+    if (calendarElement && !calendarElement.hasChildNodes()) {
+      GitHubCalendar('.github-calendar', 'Sleepstars', {
+        responsive: true,
+        tooltips: true,
+        global_stats: false,
+        cache: true
+      });
+    }
+  });
+</script>
+
+<style>
+  :global(.github-calendar) {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 14px;
+  }
+  
+  :global(.github-calendar .calendar-graph) {
+    width: 100%;
+  }
+  
+  :global(.github-calendar .js-calendar-graph-table) {
+    width: 100%;
+  }
+  
+  :global(.dark .contrib-legend) {
+    color: #9ca3af;
+  }
+  
+  :global(.dark .calendar-graph .wday, 
+          .dark .calendar-graph .month) {
+    fill: #9ca3af;
+  }
+  
+  :global(.dark .contrib-number) {
+    color: #e5e7eb;
+  }
+</style>

@@ -6,7 +6,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://sleepstars.net/</loc>
-    <lastmod>2025-10-18T10:17:27.570Z</lastmod>
+    <lastmod>2025-10-18T10:28:21.307Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sleepstars.net/"/>
@@ -21,7 +21,7 @@
   <!-- Chinese Homepage -->
   <url>
     <loc>https://sleepstars.net/zh/</loc>
-    <lastmod>2025-10-18T10:17:27.570Z</lastmod>
+    <lastmod>2025-10-18T10:28:21.307Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sleepstars.net/zh/"/>
@@ -36,7 +36,7 @@
   <!-- Projects Page -->
   <url>
     <loc>https://sleepstars.net/projects/</loc>
-    <lastmod>2025-10-18T10:17:27.570Z</lastmod>
+    <lastmod>2025-10-18T10:28:21.307Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://sleepstars.net/projects/"/>
@@ -46,7 +46,7 @@
   <!-- Chinese Projects Page -->
   <url>
     <loc>https://sleepstars.net/zh/projects/</loc>
-    <lastmod>2025-10-18T10:17:27.570Z</lastmod>
+    <lastmod>2025-10-18T10:28:21.307Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="zh" href="https://sleepstars.net/zh/projects/"/>
