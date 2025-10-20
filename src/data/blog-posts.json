@@ -1,5 +1,11 @@
 [
   {
+    "title": "Debian 启用 MPTCP 突破单线程限速",
+    "link": "https://blog.sleepstars.net/archives/debian-13-qi-yong-mptcp-tu-po-dan-xian-cheng-xian-su",
+    "pubDate": "2025-10-19T15:34:00.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%20%E5%90%AF%E7%94%A8%20MPTCP%20%E7%AA%81%E7%A0%B4%E5%8D%95%E7%BA%BF%E7%A8%8B%E9%99%90%E9%80%9F&amp;url=/archives/de"
+  },
+  {
     "title": "#周报 1 记录首个个人页面上线",
     "link": "https://blog.sleepstars.net/archives/zhou-bao-1-ji-lu-shou-ge-ge-ren-ye-mian-shang-xian",
     "pubDate": "2025-10-08T17:42:08.000Z",
@@ -22,11 +28,5 @@
     "link": "https://blog.sleepstars.net/archives/debian-13-deb822-sources",
     "pubDate": "2025-09-18T08:07:11.000Z",
     "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%2013%20DEB822%20%E6%A0%BC%E5%BC%8F%E7%AE%80%E4%BB%8B%EF%BC%88%E5%8F%8A%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%EF%BC%89"
-  },
-  {
-    "title": "Debian 13 更换 Xanmod 内核（采用新版 Deb822）",
-    "link": "https://blog.sleepstars.net/archives/debian-13-geng-huan-xanmod-nei-he",
-    "pubDate": "2025-09-03T17:52:05.000Z",
-    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%2013%20%E6%9B%B4%E6%8D%A2%20Xanmod%20%E5%86%85%E6%A0%B8%EF%BC%88%E9%87%87%E7%94%A8%E6%96%B0%E7%89%88%20Deb822%EF%BC"
   }
 ]
