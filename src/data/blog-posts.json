@@ -1,5 +1,11 @@
 [
   {
+    "title": "Debian 13 实现高精度时间同步避免同步误差",
+    "link": "https://blog.sleepstars.net/archives/debian-13-shi-xian-shi-jian-tong-bu",
+    "pubDate": "2025-10-22T03:34:17.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%2013%20%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E9%81%BF%E5%85%8D%E5%90%8C"
+  },
+  {
     "title": "Debian 启用 MPTCP 突破单线程限速",
     "link": "https://blog.sleepstars.net/archives/debian-13-qi-yong-mptcp-tu-po-dan-xian-cheng-xian-su",
     "pubDate": "2025-10-19T15:34:00.000Z",
@@ -22,11 +28,5 @@
     "link": "https://blog.sleepstars.net/archives/geosite-enhance",
     "pubDate": "2025-09-22T07:13:36.000Z",
     "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E7%BD%91%E7%BB%9C%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%20Surge%20%E4%BD%BF%E7%94%A8%20GeoSite%2FGeoIP%20%E6%95%99%E7%A8%8B"
-  },
-  {
-    "title": "Debian 13 DEB822 格式简介（及迁移流程）",
-    "link": "https://blog.sleepstars.net/archives/debian-13-deb822-sources",
-    "pubDate": "2025-09-18T08:07:11.000Z",
-    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%2013%20DEB822%20%E6%A0%BC%E5%BC%8F%E7%AE%80%E4%BB%8B%EF%BC%88%E5%8F%8A%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%EF%BC%89"
   }
 ]
