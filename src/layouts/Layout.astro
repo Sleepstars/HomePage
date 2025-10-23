@@ -152,7 +152,7 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
     </noscript>
   <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-      {{
+      {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Sleepstars",
@@ -178,12 +178,12 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
           "name": "China"
         },
         "knowsLanguage": ["English", "Chinese"]
-      }}
+      }
     </script>
 
     <!-- Website Schema -->
     <script type="application/ld+json">
-      {{
+      {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": siteName,
@@ -196,7 +196,7 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
           "name": siteName,
           "url": "https://sleepstars.net"
         }
-      }}
+      }
     </script>
   </head>
   <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen" data-translations={translationsEncoded}>
