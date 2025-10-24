@@ -8,13 +8,22 @@ import { translations } from '../i18n/translations';
 import { site } from '../data/site';
 import { Image } from 'astro:assets';
 
+// Declare twemoji as a global type
+declare global {
+  interface Window {
+    twemoji: {
+      parse: (el: Element, options?: any) => void;
+    };
+  }
+}
+
 interface Props {
   title: string;
   description?: string;
-  lang?: string;
+  lang?: 'en' | 'zh';
 }
 
-const { title, description = 'Web3 enthusiast, blockchain developer & indie hacker', lang = 'en' } = Astro.props;
+const { title, description = 'Web3 enthusiast, blockchain developer & indie hacker', lang = 'en' as const } = Astro.props;
 // OpenGraph/Twitter helpers
 const siteName = site.name;
 const ogLocale = lang === 'zh' ? 'zh_CN' : 'en_US';
@@ -289,14 +298,14 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
               class="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               data-i18n-key="nav.home"
             >
-              {translations[lang]['nav.home']}
+              {translations[lang as 'en' | 'zh']['nav.home']}
             </a>
             <a 
               href={lang === 'zh' ? '/zh/projects' : '/projects'}
               class="text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               data-i18n-key="nav.projects"
             >
-              {translations[lang]['nav.projects']}
+              {translations[lang as 'en' | 'zh']['nav.projects']}
             </a>
           </nav>
 
@@ -330,14 +339,14 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
               class="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               data-i18n-key="nav.home"
             >
-              {translations[lang]['nav.home']}
+              {translations[lang as 'en' | 'zh']['nav.home']}
             </a>
             <a 
               href={lang === 'zh' ? '/zh/projects' : '/projects'}
               class="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               data-i18n-key="nav.projects"
             >
-              {translations[lang]['nav.projects']}
+              {translations[lang as 'en' | 'zh']['nav.projects']}
             </a>
           </div>
         </nav>
@@ -499,6 +508,7 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
         twemojiScript.crossOrigin = 'anonymous';
         twemojiScript.onload = function() {
           // Parse the entire document to replace emoji with Twemoji
+          const twemoji = (window as any).twemoji;
           if (typeof twemoji !== 'undefined') {
             twemoji.parse(document.body, {
               folder: 'svg',
@@ -516,9 +526,10 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
         };
 
         // Only append if not already loaded
-        if (!window.twemoji) {
+        if (!(window as any).twemoji) {
           document.head.appendChild(twemojiScript);
         } else {
+          const twemoji = (window as any).twemoji;
           twemoji.parse(document.body, {
             folder: 'svg',
             ext: '.svg',

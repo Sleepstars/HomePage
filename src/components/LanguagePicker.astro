@@ -128,7 +128,7 @@ const flagClasses = {
       const lang = target.getAttribute('data-lang');
       if (!lang) return;
 
-      const url = new URL(target.getAttribute('href') ?? target.href, window.location.origin);
+      const url = new URL(target.getAttribute('href') ?? (target as HTMLAnchorElement).href, window.location.origin);
 
       const performLanguageChange = () => {
         storeManualSwitch(lang);

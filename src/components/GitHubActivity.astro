@@ -112,7 +112,7 @@ function getColorClass(level: number) {
             <div class="w-[12px] mr-[2px]"></div>
             <div class="flex justify-between w-full">
               {activityData.weeks.filter((_, i) => i % 4 === 0).map((week) => (
-                <span key={week.firstDay}>
+                <span>
                   {getMonthName(week.firstDay)}
                 </span>
               ))}
@@ -125,7 +125,7 @@ function getColorClass(level: number) {
             <!-- 星期标签 -->
             <div class="flex flex-col justify-between text-[10px] text-gray-500 dark:text-gray-400 mr-[6px]">
               {weekdayLabels.map((label, i) => (
-                <div key={i} class="h-[12px] flex items-center">
+                <div class="h-[12px] flex items-center">
                   {label}
                 </div>
               ))}
@@ -134,10 +134,9 @@ function getColorClass(level: number) {
             <!-- 周网格 -->
             <div class="flex gap-[2px]">
               {activityData.weeks.map((week, weekIndex) => (
-                <div key={weekIndex} class="flex flex-col gap-[2px]">
+                <div class="flex flex-col gap-[2px]">
                   {week.days.map((day, dayIndex) => (
                     <div
-                      key={`${weekIndex}-${dayIndex}`}
                       class={`w-[12px] h-[12px] rounded-sm ${getColorClass(day.level)} hover:ring-2 hover:ring-blue-400 transition-all cursor-pointer`}
                       title={formatDate(day.date, day.count)}
                     ></div>
@@ -155,7 +154,6 @@ function getColorClass(level: number) {
             <div class="flex gap-[2px]">
               {[0, 1, 2, 3, 4].map((level) => (
                 <div
-                  key={level}
                   class={`w-[12px] h-[12px] rounded-sm ${getColorClass(level)}`}
                 ></div>
               ))}
