@@ -151,53 +151,49 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
       <link rel="stylesheet" href="/flags/flags-lean.css" />
     </noscript>
   <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Sleepstars",
-        "url": "https://sleepstars.net",
-        "sameAs": [
-          "https://github.com/Sleepstars",
-          "https://twitter.com/Sleep_stars_",
-          "https://mastodon.social/@Sleepstars",
-          "https://t.me/Sleepstars"
-        ],
-        "jobTitle": lang === 'zh' ? "AI 爱好者，学生 & 独立开发者" : "AI enthusiast, student & indie developer",
-        "description": description,
-        "image": "https://sleepstars.net/avatar.webp",
-        "email": "admin@sleepstars.net",
-        "knowsAbout": [
-          "Artificial Intelligence",
-          "Web Development",
-          "Blockchain",
-          "Open Source"
-        ],
-        "nationality": {
-          "@type": "Country",
-          "name": "China"
-        },
-        "knowsLanguage": ["English", "Chinese"]
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sleepstars",
+      "url": "https://sleepstars.net",
+      "sameAs": [
+        "https://github.com/Sleepstars",
+        "https://twitter.com/Sleep_stars_",
+        "https://mastodon.social/@Sleepstars",
+        "https://t.me/Sleepstars"
+      ],
+      "jobTitle": lang === 'zh' ? "AI 爱好者，学生 & 独立开发者" : "AI enthusiast, student & indie developer",
+      "description": description,
+      "image": "https://sleepstars.net/avatar.webp",
+      "email": "admin@sleepstars.net",
+      "knowsAbout": [
+        "Artificial Intelligence",
+        "Web Development",
+        "Blockchain",
+        "Open Source"
+      ],
+      "nationality": {
+        "@type": "Country",
+        "name": "China"
+      },
+      "knowsLanguage": ["English", "Chinese"]
+    })} />
 
     <!-- Website Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": siteName,
+      "url": "https://sleepstars.net",
+      "description": description,
+      "inLanguage": lang === 'zh' ? "zh-CN" : "en-US",
+      "isAccessibleForFree": true,
+      "isPartOf": {
         "@type": "WebSite",
         "name": siteName,
-        "url": "https://sleepstars.net",
-        "description": description,
-        "inLanguage": lang === 'zh' ? "zh-CN" : "en-US",
-        "isAccessibleForFree": true,
-        "isPartOf": {
-          "@type": "WebSite",
-          "name": siteName,
-          "url": "https://sleepstars.net"
-        }
+        "url": "https://sleepstars.net"
       }
-    </script>
+    })} />
   </head>
   <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen" data-translations={translationsEncoded}>
     <script is:inline>
