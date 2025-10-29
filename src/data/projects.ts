@@ -29,7 +29,7 @@ export const projects: Project[] = [
     ],
     "url": "https://geo.sleepstars.de",
     "github": "https://github.com/Sleepstars/Surge-Geosite-Enhance",
-    "stars": 6,
+    "stars": 8,
     "featured": true
   }
 ];
