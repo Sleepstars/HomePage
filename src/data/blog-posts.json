@@ -1,5 +1,11 @@
 [
   {
+    "title": "Tailscale 替代 DERP：Peer Relays 更加简单的中继方法（支持分流）",
+    "link": "https://blog.sleepstars.net/archives/ti-dai-derp-zui-gao-xiao-de-guan-fang-tailscale-relay-lu-you",
+    "pubDate": "2025-10-30T13:05:36.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Tailscale%20%E6%9B%BF%E4%BB%A3%20DERP%EF%BC%9APeer%20Relays%20%E6%9B%B4%E5%8A%A0%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%AD%E7%BB"
+  },
+  {
     "title": "Debian 13 实现高精度时间同步避免同步误差",
     "link": "https://blog.sleepstars.net/archives/debian-13-shi-xian-shi-jian-tong-bu",
     "pubDate": "2025-10-22T03:34:17.000Z",
@@ -22,11 +28,5 @@
     "link": "https://blog.sleepstars.net/archives/vscode-remote-patchelf-compatibility",
     "pubDate": "2025-09-24T12:22:42.000Z",
     "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E5%A6%82%E4%BD%95%E5%9C%A8%20CentOS%207%2FUbuntu%2016%20%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%96%B0%E7%89%88%E6%9C%AC%20VSCode%2"
-  },
-  {
-    "title": "网络调试工具 Surge 使用 GeoSite/GeoIP 教程",
-    "link": "https://blog.sleepstars.net/archives/geosite-enhance",
-    "pubDate": "2025-09-22T07:13:36.000Z",
-    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E7%BD%91%E7%BB%9C%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%20Surge%20%E4%BD%BF%E7%94%A8%20GeoSite%2FGeoIP%20%E6%95%99%E7%A8%8B"
   }
 ]
