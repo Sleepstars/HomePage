@@ -1,15 +1,10 @@
 {
   "username": "Sleepstars",
-  "totalContributions": 48,
+  "totalContributions": 40,
   "weeks": [
     {
-      "firstDay": "2024-11-07",
+      "firstDay": "2024-11-08",
       "days": [
-        {
-          "date": "2024-11-07",
-          "count": 0,
-          "level": 0
-        },
         {
           "date": "2024-11-08",
           "count": 0,
@@ -332,8 +327,8 @@
         },
         {
           "date": "2025-01-03",
-          "count": 1,
-          "level": 1
+          "count": 0,
+          "level": 0
         },
         {
           "date": "2025-01-04",
@@ -428,7 +423,7 @@
         {
           "date": "2025-01-19",
           "count": 2,
-          "level": 1
+          "level": 2
         },
         {
           "date": "2025-01-20",
@@ -452,8 +447,8 @@
         },
         {
           "date": "2025-01-24",
-          "count": 1,
-          "level": 1
+          "count": 0,
+          "level": 0
         },
         {
           "date": "2025-01-25",
@@ -537,8 +532,8 @@
         },
         {
           "date": "2025-02-08",
-          "count": 2,
-          "level": 1
+          "count": 0,
+          "level": 0
         }
       ]
     },
@@ -547,13 +542,13 @@
       "days": [
         {
           "date": "2025-02-09",
-          "count": 2,
-          "level": 1
+          "count": 0,
+          "level": 0
         },
         {
           "date": "2025-02-10",
-          "count": 7,
-          "level": 3
+          "count": 0,
+          "level": 0
         },
         {
           "date": "2025-02-11",
@@ -898,7 +893,7 @@
         {
           "date": "2025-04-12",
           "count": 5,
-          "level": 2
+          "level": 4
         }
       ]
     },
@@ -1712,8 +1707,8 @@
         },
         {
           "date": "2025-09-01",
-          "count": 1,
-          "level": 1
+          "count": 0,
+          "level": 0
         },
         {
           "date": "2025-09-02",
@@ -1808,7 +1803,7 @@
         {
           "date": "2025-09-18",
           "count": 2,
-          "level": 1
+          "level": 2
         },
         {
           "date": "2025-09-19",
@@ -2092,11 +2087,16 @@
         },
         {
           "date": "2025-11-07",
+          "count": 6,
+          "level": 4
+        },
+        {
+          "date": "2025-11-08",
           "count": 0,
           "level": 0
         }
       ]
     }
   ],
-  "lastUpdated": "2025-11-07T03:12:04.294Z"
+  "lastUpdated": "2025-11-08T03:03:38.972Z"
 }
