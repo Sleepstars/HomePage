@@ -14,11 +14,10 @@ interface ActivityData {
 }
 
 interface Props {
-  username?: string;
   lang: 'en' | 'zh';
 }
 
-const { username = 'Sleepstars', lang } = Astro.props;
+const { lang } = Astro.props;
 
 // 读取活动数据
 let activityData: ActivityData | null = null;
@@ -43,12 +42,6 @@ const weekdayLabels = lang === 'zh'
 function getMonthName(dateStr: string) {
   const date = new Date(dateStr);
   return monthLabels[date.getMonth()];
-}
-
-// 获取星期几（0-6，0是周日）
-function getWeekday(dateStr: string) {
-  const date = new Date(dateStr);
-  return date.getDay();
 }
 
 // 格式化日期
@@ -124,7 +117,7 @@ function getColorClass(level: number) {
             <div class="flex gap-[2px] items-start">
             <!-- 星期标签 -->
             <div class="flex flex-col justify-between text-[10px] text-gray-500 dark:text-gray-400 mr-[6px]">
-              {weekdayLabels.map((label, i) => (
+              {weekdayLabels.map((label) => (
                 <div class="h-[12px] flex items-center">
                   {label}
                 </div>
@@ -133,9 +126,9 @@ function getColorClass(level: number) {
 
             <!-- 周网格 -->
             <div class="flex gap-[2px]">
-              {activityData.weeks.map((week, weekIndex) => (
+              {activityData.weeks.map((week) => (
                 <div class="flex flex-col gap-[2px]">
-                  {week.days.map((day, dayIndex) => (
+                  {week.days.map((day) => (
                     <div
                       class={`w-[12px] h-[12px] rounded-sm ${getColorClass(day.level)} hover:ring-2 hover:ring-blue-400 transition-all cursor-pointer`}
                       title={formatDate(day.date, day.count)}

@@ -17,10 +17,6 @@ async function fetchGitHubActivity() {
     const oneYearAgo = new Date(today);
     oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
     
-    // 计算需要查询的周数（大约52周）
-    const weekCount = Math.ceil((today - oneYearAgo) / (7 * 24 * 60 * 60 * 1000));
-    
-    const contributions = {};
     const query = `
       query($username: String!, $from: DateTime!, $to: DateTime!) {
         user(login: $username) {

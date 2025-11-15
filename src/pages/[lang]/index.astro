@@ -1,0 +1,15 @@
+---
+import HomePage from '../../components/pages/HomePage.astro';
+import type { Language } from '../../i18n/translations';
+import { languages, defaultLanguage } from '../../i18n/translations';
+
+export function getStaticPaths() {
+  return Object.keys(languages)
+    .filter((locale) => locale !== defaultLanguage)
+    .map((lang) => ({ params: { lang } }));
+}
+
+const langParam = (Astro.params.lang ?? defaultLanguage) as Language;
+---
+
+<HomePage lang={langParam} />

@@ -11,4 +11,16 @@ const home = defineCollection({
   })
 });
 
-export const collections = { home };
+const blog = defineCollection({
+  type: 'data',
+  schema: z.array(
+    z.object({
+      title: z.string(),
+      link: z.string().url(),
+      pubDate: z.string().nullable(),
+      description: z.string()
+    })
+  )
+});
+
+export const collections = { home, blog };

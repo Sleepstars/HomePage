@@ -1,26 +1,44 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import SocialLinks from '../../components/SocialLinks.astro';
-import BlogPosts from '../../components/BlogPosts.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-import type { SocialLink } from '../../components/SocialLinks.astro';
-import { getCollection } from 'astro:content';
-import blogPostsData from '../../data/blog-posts.json';
+import SocialLinks from '../SocialLinks.astro';
+import BlogPosts from '../BlogPosts.astro';
+import type { SocialLink } from '../SocialLinks.astro';
+import { useTranslations } from '../../i18n/utils';
+import type { Language } from '../../i18n/translations';
+import type { BlogPost } from '../../types/blog';
+import { getEntry } from 'astro:content';
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const heroEntries = await getCollection('home');
-const heroEntry =
-  heroEntries.find((entry) => entry.data.locale === lang) ??
-  heroEntries.find((entry) => entry.data.locale === 'en');
-
-if (!heroEntry) {
-  console.warn(`No hero content found for locale ${lang}.`);
+interface Props {
+  lang: Language;
 }
 
-const hero = heroEntry?.data.hero ?? { greeting: '', paragraphs: [] };
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 
-// Social media links - easily customizable
+async function resolveHeroContent(locale: Language) {
+  try {
+    const entry = await getEntry('home', locale);
+    return entry?.data.hero;
+  } catch (error) {
+    return undefined;
+  }
+}
+
+const heroContent = (await resolveHeroContent(lang)) ?? (await resolveHeroContent('en')) ?? {
+  greeting: '',
+  paragraphs: [] as string[]
+};
+
+let blogPosts: BlogPost[] = [];
+try {
+  const feedEntry = await getEntry('blog', 'feed');
+  if (Array.isArray(feedEntry?.data)) {
+    blogPosts = feedEntry.data;
+  }
+} catch (error) {
+  console.warn('Unable to load blog feed data:', error);
+}
+
 const socialLinks: SocialLink[] = [
   {
     name: 'GitHub',
@@ -63,7 +81,6 @@ const socialLinks: SocialLink[] = [
 
 <Layout title={t('site.title')} description={t('site.description')} lang={lang}>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Hero Section -->
     <section class="mb-16">
       <h1 data-i18n-key="site.title" class="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
         {t('site.title')}
@@ -71,10 +88,10 @@ const socialLinks: SocialLink[] = [
 
       <div class="prose dark:prose-invert max-w-none">
         <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
-          {hero.greeting}
+          {heroContent.greeting}
         </p>
 
-        {hero.paragraphs.map((paragraph, index) => (
+        {heroContent.paragraphs.map((paragraph, index) => (
           <p class={`text-base text-gray-700 dark:text-gray-300 ${index === 0 ? 'mt-6' : 'mt-4'}`}>
             {paragraph}
           </p>
@@ -82,10 +99,8 @@ const socialLinks: SocialLink[] = [
       </div>
     </section>
 
-    <!-- Divider -->
     <hr class="border-gray-200 dark:border-gray-800 mb-12" />
 
-    <!-- Social Links Section -->
     <section class="mb-16">
       <h2 data-i18n-key="social.title" class="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
         {t('social.title')}
@@ -113,10 +128,8 @@ const socialLinks: SocialLink[] = [
       </div>
     </section>
 
-    <!-- Divider -->
     <hr class="border-gray-200 dark:border-gray-800 mb-12" />
 
-    <!-- Blog Posts Section -->
     <section class="mb-16">
       <div class="flex items-center justify-between mb-6">
         <h2 data-i18n-key="blog.title" class="text-2xl font-semibold text-gray-900 dark:text-gray-100">
@@ -147,16 +160,14 @@ const socialLinks: SocialLink[] = [
         </div>
       </div>
 
-      <BlogPosts posts={blogPostsData} lang={lang} />
+      <BlogPosts posts={blogPosts} lang={lang} />
     </section>
-
   </div>
 </Layout>
 
 <style>
   @reference "../../styles/global.css";
 
-  /* Custom styles for links in prose */
   .prose a {
     @apply text-blue-600 dark:text-blue-400 hover:underline;
   }

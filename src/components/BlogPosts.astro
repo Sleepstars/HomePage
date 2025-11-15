@@ -1,18 +1,12 @@
 ---
-export interface BlogPost {
-  title: string;
-  link: string;
-  pubDate: string | null;
-  description: string;
-}
+import type { BlogPost } from '../types/blog';
 
 interface Props {
   posts: BlogPost[];
-  showRSSLink?: boolean;
   lang?: string;
 }
 
-const { posts, showRSSLink = false, lang = 'en' } = Astro.props;
+const { posts, lang = 'en' } = Astro.props;
 
 function formatDate(dateString: string | null, lang: string = 'en'): string {
   if (!dateString) return '';
@@ -27,23 +21,6 @@ function formatDate(dateString: string | null, lang: string = 'en'): string {
   return new Intl.DateTimeFormat(lang === 'zh' ? 'zh-CN' : 'en-US', options).format(date);
 }
 
-// Extract plain text from HTML description
-function stripHTML(html: string): string {
-  // Remove all HTML tags and decode HTML entities
-  const text = html.replace(/<[^>]*>/g, '').trim();
-  // If text is empty or too short, return empty string
-  if (text.length < 10) return '';
-  return text.substring(0, 120);
-}
-
-// Get translation function
-const t = (key: string) => {
-  const translations = {
-    en: { 'blog.rss': 'RSS Feed' },
-    zh: { 'blog.rss': 'RSS 订阅' }
-  };
-  return (translations[lang as keyof typeof translations] as Record<string, string>)?.[key] || key;
-};
 ---
 
 <div class="space-y-4">

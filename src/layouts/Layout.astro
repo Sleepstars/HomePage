@@ -17,12 +17,6 @@ declare global {
   }
 }
 
-interface Props {
-  title: string;
-  description?: string;
-  lang?: 'en' | 'zh';
-}
-
 const { title, description = 'Web3 enthusiast, blockchain developer & indie hacker', lang = 'en' as const } = Astro.props;
 // OpenGraph/Twitter helpers
 const siteName = site.name;
@@ -205,71 +199,7 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
     })} />
   </head>
   <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen" data-translations={translationsEncoded}>
-    <script is:inline>
-      (function () {
-        if (typeof window === 'undefined') return;
-
-        const STORAGE_KEY = 'preferred-language';
-        const MANUAL_SWITCH_KEY = 'manual-language-switch';
-        const SUPPORTED_LANGS = ['en', 'zh'];
-
-        // Skip auto-redirect if user manually switched language
-        const manualSwitch = sessionStorage.getItem(MANUAL_SWITCH_KEY);
-        if (manualSwitch === 'true') {
-          return;
-        }
-
-        const getBrowserLang = () => {
-          const navigatorLangs = Array.isArray(navigator.languages) ? navigator.languages : [navigator.language];
-          const normalized = navigatorLangs
-            .filter(Boolean)
-            .map((lang) => lang.toLowerCase());
-
-          if (normalized.some((lang) => lang.startsWith('zh'))) {
-            return 'zh';
-          }
-
-          return 'en';
-        };
-
-        const currentPath = window.location.pathname;
-        const currentLang = currentPath.startsWith('/zh') ? 'zh' : 'en';
-        const stripLocaleFromPath = (pathname) => pathname.replace(/^\/(zh)(?=\/|$)/, '') || '/';
-
-        const storedLang = (() => {
-          try {
-            const value = window.localStorage.getItem(STORAGE_KEY);
-            return SUPPORTED_LANGS.includes(value ?? '') ? value : null;
-          } catch (error) {
-            return null;
-          }
-        })();
-
-        const targetLang = storedLang ?? getBrowserLang();
-
-        if (targetLang === currentLang) {
-          return;
-        }
-
-        const basePath = stripLocaleFromPath(currentPath);
-        const search = window.location.search ?? '';
-        const hash = window.location.hash ?? '';
-
-        const targetPath = targetLang === 'zh'
-          ? (basePath === '/' ? '/zh' : `/zh${basePath}`)
-          : basePath;
-
-        try {
-          window.localStorage.setItem(STORAGE_KEY, targetLang);
-        } catch (error) {
-          // ignore write errors (e.g. private mode)
-        }
-
-        if (targetPath && targetPath !== currentPath) {
-          window.location.replace(`${targetPath}${search}${hash}`);
-        }
-      })();
-    </script>
+    
     <AnimatedBackground />
 
     <!-- Header with frosted glass effect -->
@@ -395,7 +325,6 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
           }
         })();
         const STORAGE_KEY = 'preferred-language';
-        const MANUAL_SWITCH_KEY = 'manual-language-switch';
         const FALLBACK_LANG = 'en';
 
         const getLangFromPath = (path) => (path.startsWith('/zh') ? 'zh' : 'en');
@@ -458,14 +387,6 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
             }
           }
 
-          if (!options.skipSession) {
-            try {
-              sessionStorage.setItem(MANUAL_SWITCH_KEY, 'true');
-            } catch (error) {
-              // ignore session storage errors
-            }
-          }
-
           document.dispatchEvent(
             new CustomEvent('astro-language-applied', {
               detail: { lang: targetLang }
@@ -487,15 +408,15 @@ const psbText = psbHasInfo ? `${psbProvince}公网安备 ${psbNumber} 号` : '';
 
         window.addEventListener('popstate', () => {
           const lang = getLangFromPath(window.location.pathname);
-          applyLanguage(lang, { skipStorage: true, skipSession: true });
+          applyLanguage(lang, { skipStorage: true });
         });
 
         document.addEventListener('astro:page-load', () => {
           const lang = getLangFromPath(window.location.pathname);
-          applyLanguage(lang, { skipStorage: true, skipSession: true });
+          applyLanguage(lang, { skipStorage: true });
         });
 
-        applyLanguage(getLangFromPath(window.location.pathname), { skipStorage: true, skipSession: true });
+        applyLanguage(getLangFromPath(window.location.pathname), { skipStorage: true });
       })();
     </script>
 
