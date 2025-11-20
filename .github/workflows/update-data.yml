@@ -35,7 +35,7 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          if git diff --exit-code src/data/blog-posts.json src/data/projects.ts src/data/github-activity.json; then
+          if git diff --exit-code src/content/blog/feed.json src/data/projects.ts src/data/github-activity.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -46,6 +46,6 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add src/data/blog-posts.json src/data/projects.ts src/data/github-activity.json
+          git add src/content/blog/feed.json src/data/projects.ts src/data/github-activity.json
           git commit -m "chore: update site data (RSS feed, GitHub stars and activity) [skip ci]"
           git push
