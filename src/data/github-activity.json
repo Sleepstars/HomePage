@@ -1,45 +1,10 @@
 {
   "username": "Sleepstars",
-  "totalContributions": 104,
+  "totalContributions": 108,
   "weeks": [
     {
-      "firstDay": "2024-11-15",
+      "firstDay": "2024-11-21",
       "days": [
-        {
-          "date": "2024-11-15",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2024-11-16",
-          "count": 0,
-          "level": 0
-        }
-      ]
-    },
-    {
-      "firstDay": "2024-11-17",
-      "days": [
-        {
-          "date": "2024-11-17",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2024-11-18",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2024-11-19",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2024-11-20",
-          "count": 0,
-          "level": 0
-        },
         {
           "date": "2024-11-21",
           "count": 0,
@@ -2092,11 +2057,46 @@
         },
         {
           "date": "2025-11-15",
+          "count": 2,
+          "level": 2
+        }
+      ]
+    },
+    {
+      "firstDay": "2025-11-16",
+      "days": [
+        {
+          "date": "2025-11-16",
+          "count": 0,
+          "level": 0
+        },
+        {
+          "date": "2025-11-17",
+          "count": 0,
+          "level": 0
+        },
+        {
+          "date": "2025-11-18",
+          "count": 0,
+          "level": 0
+        },
+        {
+          "date": "2025-11-19",
+          "count": 0,
+          "level": 0
+        },
+        {
+          "date": "2025-11-20",
+          "count": 2,
+          "level": 2
+        },
+        {
+          "date": "2025-11-21",
           "count": 0,
           "level": 0
         }
       ]
     }
   ],
-  "lastUpdated": "2025-11-15T03:08:40.846Z"
+  "lastUpdated": "2025-11-21T03:12:01.572Z"
 }
