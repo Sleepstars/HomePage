@@ -1,15 +1,10 @@
 {
   "username": "Sleepstars",
-  "totalContributions": 108,
+  "totalContributions": 156,
   "weeks": [
     {
-      "firstDay": "2024-11-26",
+      "firstDay": "2024-11-27",
       "days": [
-        {
-          "date": "2024-11-26",
-          "count": 0,
-          "level": 0
-        },
         {
           "date": "2024-11-27",
           "count": 0,
@@ -318,7 +313,7 @@
         {
           "date": "2025-01-19",
           "count": 2,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2025-01-20",
@@ -783,12 +778,12 @@
         {
           "date": "2025-04-11",
           "count": 10,
-          "level": 4
+          "level": 2
         },
         {
           "date": "2025-04-12",
           "count": 5,
-          "level": 4
+          "level": 1
         }
       ]
     },
@@ -1597,13 +1592,13 @@
       "days": [
         {
           "date": "2025-08-31",
-          "count": 0,
-          "level": 0
+          "count": 1,
+          "level": 1
         },
         {
           "date": "2025-09-01",
-          "count": 0,
-          "level": 0
+          "count": 1,
+          "level": 1
         },
         {
           "date": "2025-09-02",
@@ -1647,8 +1642,8 @@
         },
         {
           "date": "2025-09-09",
-          "count": 0,
-          "level": 0
+          "count": 4,
+          "level": 1
         },
         {
           "date": "2025-09-10",
@@ -1657,13 +1652,13 @@
         },
         {
           "date": "2025-09-11",
-          "count": 0,
-          "level": 0
+          "count": 5,
+          "level": 1
         },
         {
           "date": "2025-09-12",
-          "count": 0,
-          "level": 0
+          "count": 2,
+          "level": 1
         },
         {
           "date": "2025-09-13",
@@ -1803,7 +1798,7 @@
         {
           "date": "2025-10-06",
           "count": 3,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2025-10-07",
@@ -1907,8 +1902,8 @@
         },
         {
           "date": "2025-10-25",
-          "count": 0,
-          "level": 0
+          "count": 4,
+          "level": 1
         }
       ]
     },
@@ -1917,28 +1912,28 @@
       "days": [
         {
           "date": "2025-10-26",
-          "count": 0,
-          "level": 0
+          "count": 1,
+          "level": 1
         },
         {
           "date": "2025-10-27",
-          "count": 0,
-          "level": 0
+          "count": 1,
+          "level": 1
         },
         {
           "date": "2025-10-28",
-          "count": 0,
-          "level": 0
+          "count": 12,
+          "level": 3
         },
         {
           "date": "2025-10-29",
-          "count": 0,
-          "level": 0
+          "count": 4,
+          "level": 1
         },
         {
           "date": "2025-10-30",
-          "count": 0,
-          "level": 0
+          "count": 4,
+          "level": 1
         },
         {
           "date": "2025-10-31",
@@ -1947,8 +1942,8 @@
         },
         {
           "date": "2025-11-01",
-          "count": 0,
-          "level": 0
+          "count": 3,
+          "level": 1
         }
       ]
     },
@@ -1957,13 +1952,13 @@
       "days": [
         {
           "date": "2025-11-02",
-          "count": 0,
-          "level": 0
+          "count": 1,
+          "level": 1
         },
         {
           "date": "2025-11-03",
-          "count": 0,
-          "level": 0
+          "count": 2,
+          "level": 1
         },
         {
           "date": "2025-11-04",
@@ -1982,8 +1977,8 @@
         },
         {
           "date": "2025-11-07",
-          "count": 6,
-          "level": 4
+          "count": 7,
+          "level": 2
         },
         {
           "date": "2025-11-08",
@@ -2003,7 +1998,7 @@
         {
           "date": "2025-11-10",
           "count": 4,
-          "level": 3
+          "level": 1
         },
         {
           "date": "2025-11-11",
@@ -2018,7 +2013,7 @@
         {
           "date": "2025-11-13",
           "count": 2,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2025-11-14",
@@ -2028,7 +2023,7 @@
         {
           "date": "2025-11-15",
           "count": 2,
-          "level": 2
+          "level": 1
         }
       ]
     },
@@ -2047,8 +2042,8 @@
         },
         {
           "date": "2025-11-18",
-          "count": 0,
-          "level": 0
+          "count": 2,
+          "level": 1
         },
         {
           "date": "2025-11-19",
@@ -2058,7 +2053,7 @@
         {
           "date": "2025-11-20",
           "count": 2,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2025-11-21",
@@ -2094,9 +2089,14 @@
           "date": "2025-11-26",
           "count": 0,
           "level": 0
+        },
+        {
+          "date": "2025-11-27",
+          "count": 0,
+          "level": 0
         }
       ]
     }
   ],
-  "lastUpdated": "2025-11-26T03:16:32.941Z"
+  "lastUpdated": "2025-11-27T03:13:09.386Z"
 }
