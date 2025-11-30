@@ -3,21 +3,6 @@
   "totalContributions": 156,
   "weeks": [
     {
-      "firstDay": "2024-11-29",
-      "days": [
-        {
-          "date": "2024-11-29",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2024-11-30",
-          "count": 0,
-          "level": 0
-        }
-      ]
-    },
-    {
       "firstDay": "2024-12-01",
       "days": [
         {
@@ -2096,7 +2081,17 @@
           "level": 0
         }
       ]
+    },
+    {
+      "firstDay": "2025-11-30",
+      "days": [
+        {
+          "date": "2025-11-30",
+          "count": 0,
+          "level": 0
+        }
+      ]
     }
   ],
-  "lastUpdated": "2025-11-29T03:13:07.206Z"
+  "lastUpdated": "2025-11-30T03:37:29.441Z"
 }
