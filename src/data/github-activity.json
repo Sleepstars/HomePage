@@ -3,13 +3,8 @@
   "totalContributions": 163,
   "weeks": [
     {
-      "firstDay": "2025-01-07",
+      "firstDay": "2025-01-08",
       "days": [
-        {
-          "date": "2025-01-07",
-          "count": 0,
-          "level": 0
-        },
         {
           "date": "2025-01-08",
           "count": 0,
@@ -2094,9 +2089,14 @@
           "date": "2026-01-07",
           "count": 1,
           "level": 1
+        },
+        {
+          "date": "2026-01-08",
+          "count": 0,
+          "level": 0
         }
       ]
     }
   ],
-  "lastUpdated": "2026-01-07T03:40:58.794Z"
+  "lastUpdated": "2026-01-08T03:41:15.070Z"
 }
