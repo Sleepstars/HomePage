@@ -1,15 +1,10 @@
 {
   "username": "Sleepstars",
-  "totalContributions": 741,
+  "totalContributions": 787,
   "weeks": [
     {
-      "firstDay": "2025-02-25",
+      "firstDay": "2025-02-26",
       "days": [
-        {
-          "date": "2025-02-25",
-          "count": 1,
-          "level": 1
-        },
         {
           "date": "2025-02-26",
           "count": 0,
@@ -253,7 +248,7 @@
         {
           "date": "2025-04-09",
           "count": 19,
-          "level": 3
+          "level": 2
         },
         {
           "date": "2025-04-10",
@@ -1478,7 +1473,7 @@
         {
           "date": "2025-11-09",
           "count": 18,
-          "level": 3
+          "level": 2
         },
         {
           "date": "2025-11-10",
@@ -1493,7 +1488,7 @@
         {
           "date": "2025-11-12",
           "count": 18,
-          "level": 3
+          "level": 2
         },
         {
           "date": "2025-11-13",
@@ -1823,7 +1818,7 @@
         {
           "date": "2026-01-09",
           "count": 9,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2026-01-10",
@@ -2092,11 +2087,16 @@
         },
         {
           "date": "2026-02-25",
-          "count": 4,
-          "level": 1
+          "count": 38,
+          "level": 4
+        },
+        {
+          "date": "2026-02-26",
+          "count": 13,
+          "level": 2
         }
       ]
     }
   ],
-  "lastUpdated": "2026-02-25T04:22:32.926Z"
+  "lastUpdated": "2026-02-26T04:19:32.936Z"
 }
