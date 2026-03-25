@@ -1,15 +1,10 @@
 {
   "username": "Sleepstars",
-  "totalContributions": 580,
+  "totalContributions": 699,
   "weeks": [
     {
-      "firstDay": "2025-03-24",
+      "firstDay": "2025-03-25",
       "days": [
-        {
-          "date": "2025-03-24",
-          "count": 0,
-          "level": 0
-        },
         {
           "date": "2025-03-25",
           "count": 0,
@@ -113,7 +108,7 @@
         {
           "date": "2025-04-12",
           "count": 8,
-          "level": 2
+          "level": 1
         }
       ]
     },
@@ -273,7 +268,7 @@
         {
           "date": "2025-05-10",
           "count": 8,
-          "level": 2
+          "level": 1
         }
       ]
     },
@@ -1508,7 +1503,7 @@
         {
           "date": "2025-12-12",
           "count": 8,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2025-12-13",
@@ -1658,7 +1653,7 @@
         {
           "date": "2026-01-07",
           "count": 8,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2026-01-08",
@@ -1728,7 +1723,7 @@
         {
           "date": "2026-01-19",
           "count": 8,
-          "level": 2
+          "level": 1
         },
         {
           "date": "2026-01-20",
@@ -2063,7 +2058,7 @@
         {
           "date": "2026-03-19",
           "count": 25,
-          "level": 4
+          "level": 3
         },
         {
           "date": "2026-03-20",
@@ -2082,21 +2077,26 @@
       "days": [
         {
           "date": "2026-03-22",
-          "count": 3,
-          "level": 1
+          "count": 68,
+          "level": 4
         },
         {
           "date": "2026-03-23",
-          "count": 0,
-          "level": 0
+          "count": 19,
+          "level": 3
         },
         {
           "date": "2026-03-24",
+          "count": 35,
+          "level": 4
+        },
+        {
+          "date": "2026-03-25",
           "count": 0,
           "level": 0
         }
       ]
     }
   ],
-  "lastUpdated": "2026-03-24T04:21:38.856Z"
+  "lastUpdated": "2026-03-25T04:23:01.727Z"
 }
