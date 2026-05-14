@@ -1,15 +1,10 @@
 {
   "username": "Sleepstars",
-  "totalContributions": 1680,
+  "totalContributions": 1678,
   "weeks": [
     {
-      "firstDay": "2025-05-13",
+      "firstDay": "2025-05-14",
       "days": [
-        {
-          "date": "2025-05-13",
-          "count": 6,
-          "level": 1
-        },
         {
           "date": "2025-05-14",
           "count": 1,
@@ -2092,11 +2087,16 @@
         },
         {
           "date": "2026-05-13",
+          "count": 4,
+          "level": 1
+        },
+        {
+          "date": "2026-05-14",
           "count": 0,
           "level": 0
         }
       ]
     }
   ],
-  "lastUpdated": "2026-05-13T05:50:37.484Z"
+  "lastUpdated": "2026-05-14T05:49:35.784Z"
 }
