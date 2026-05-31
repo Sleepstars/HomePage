@@ -3,21 +3,6 @@
   "totalContributions": 2383,
   "weeks": [
     {
-      "firstDay": "2025-05-30",
-      "days": [
-        {
-          "date": "2025-05-30",
-          "count": 0,
-          "level": 0
-        },
-        {
-          "date": "2025-05-31",
-          "count": 0,
-          "level": 0
-        }
-      ]
-    },
-    {
       "firstDay": "2025-06-01",
       "days": [
         {
@@ -2096,7 +2081,17 @@
           "level": 0
         }
       ]
+    },
+    {
+      "firstDay": "2026-05-31",
+      "days": [
+        {
+          "date": "2026-05-31",
+          "count": 0,
+          "level": 0
+        }
+      ]
     }
   ],
-  "lastUpdated": "2026-05-30T05:49:53.977Z"
+  "lastUpdated": "2026-05-31T06:21:10.361Z"
 }
