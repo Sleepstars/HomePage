@@ -1,5 +1,11 @@
 [
   {
+    "title": "深大校园网 Linux 自动认证：Srun 协议解析与 Python 实现",
+    "link": "https://blog.sleepstars.net/archives/shen-da-xiao-yuan-wang-linux-zi-dong-ren-zheng-srun-xie-yi-jie-xi-yu-python-shi-xian",
+    "pubDate": "2026-09-05T11:56:44.000Z",
+    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%E6%B7%B1%E5%A4%A7%E6%A0%A1%E5%9B%AD%E7%BD%91%20Linux%20%E8%87%AA%E5%8A%A8%E8%AE%A4%E8%AF%81%EF%BC%9ASrun%20%E5%8D%8F%E8%A"
+  },
+  {
     "title": "周报 #26W3 记录流媒体推流（Emby）文件播放提速",
     "link": "https://blog.sleepstars.net/archives/zhou-bao-26w3-ji-lu-liu-mei-ti-tui-liu-wen-jian-bo-fang-ti-su-he-wireproxy-rs-de-ce-shi",
     "pubDate": "2026-01-18T20:15:31.000Z",
@@ -22,11 +28,5 @@
     "link": "https://blog.sleepstars.net/archives/debian-13-qi-yong-mptcp-tu-po-dan-xian-cheng-xian-su",
     "pubDate": "2025-10-19T15:34:00.000Z",
     "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=Debian%20%E5%90%AF%E7%94%A8%20MPTCP%20%E7%AA%81%E7%A0%B4%E5%8D%95%E7%BA%BF%E7%A8%8B%E9%99%90%E9%80%9F&amp;url=/archives/de"
-  },
-  {
-    "title": "#周报 1 记录首个个人页面上线",
-    "link": "https://blog.sleepstars.net/archives/zhou-bao-1-ji-lu-shou-ge-ge-ren-ye-mian-shang-xian",
-    "pubDate": "2025-10-08T17:42:08.000Z",
-    "description": "<img src=\"https://blog.sleepstars.net/plugins/feed/assets/telemetry.gif?title=%23%E5%91%A8%E6%8A%A5%201%20%E8%AE%B0%E5%BD%95%E9%A6%96%E4%B8%AA%E4%B8%AA%E4%BA%BA%E9%A1%B5%E9%9D%A2%E4%B8%8A%E7%BA%BF&amp"
   }
 ]
